@@ -13,14 +13,15 @@ namespace TakeCareOfPlants_DAL
 
         public void InsertDataCayCanh(CayCanh_DTO cayCanh_DTO, ViTri_DTO viTri_DTO)
         {
-            databaseConnection.OpenConnect();
             command = new MySqlCommand {
                 Connection = databaseConnection.Connection
             };
             try {
-                command.CommandText = "INSERT INTO caycanh(TenCay, IDLoai, NgayTrong) VALUE (@tc, @idlc, @nt)";
+                databaseConnection.OpenConnect();
+                command.CommandText = "INSERT INTO caycanh(TenCay, IDLoai, IDTinhTrang, NgayTrong) VALUE (@tc, @idlc, @idtt, @nt)";
                 command.Parameters.AddWithValue("@tc", cayCanh_DTO.TenCay);
                 command.Parameters.AddWithValue("@idlc", cayCanh_DTO.Loai_DTO.Id);
+                command.Parameters.AddWithValue("@idtt", cayCanh_DTO.TinhTrang_DTO.Id);
                 command.Parameters.AddWithValue("@nt", cayCanh_DTO.NgayTrong);
                 command.ExecuteNonQuery();
                 command.Dispose();
@@ -30,7 +31,7 @@ namespace TakeCareOfPlants_DAL
                 command.Dispose();
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
-                string mex = ex.Message;
+                MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 command.Dispose();
                 databaseConnection.CloseConnect();
             }

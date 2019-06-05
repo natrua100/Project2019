@@ -4,12 +4,21 @@ using System.Text;
 
 namespace TakeCareOfPlants_DTO
 {
-    class DonVi_DTO
+    public class DonVi_DTO
     {
         private String id;
         private String donvi;
 
-        DonVi_DTO(String id ,String donvi)
+        public DonVi_DTO()
+        {
+        }
+
+        public DonVi_DTO(string donvi)
+        {
+            this.donvi = donvi;
+        }
+
+        public DonVi_DTO(string id , string donvi)
         {
             this.id = id;
             this.donvi = donvi;

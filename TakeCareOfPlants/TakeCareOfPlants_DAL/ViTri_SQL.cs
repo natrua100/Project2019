@@ -8,15 +8,17 @@ namespace TakeCareOfPlants_DAL
 {
     public class ViTri_SQL
     {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        MySqlCommand command = new MySqlCommand();
-        MySqlDataReader reader;
+        private DatabaseConnection databaseConnection = new DatabaseConnection();
+        private MySqlCommand command;
+        private MySqlDataReader reader;
 
         public List<ViTri_DTO> GetDataViTri()
         {
             List<ViTri_DTO> viTri_DTOs = new List<ViTri_DTO>();
-            command.CommandText = "SELECT * FROM vitri";
-            command.Connection = databaseConnection.Connection;
+            command = new MySqlCommand {
+                CommandText = "SELECT * FROM vitri",
+                Connection = databaseConnection.Connection
+            };
             try {
                 databaseConnection.OpenConnect();
                 reader = command.ExecuteReader();

@@ -1,34 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TakeCareOfPlants_DTO
+﻿namespace TakeCareOfPlants_DTO
 {
     public class Login_DTO
     {
-        private String id;
-        private String taiKhoan;
-        private String matKhau;
+        private string id;
+        private string taiKhoan;
+        private string hash;
+        private string salt;
 
         public Login_DTO()
         {
         }
 
-        public Login_DTO(String taiKhoan, String matKhau)
+        public Login_DTO(string taiKhoan, string hash, string salt)
         {
             this.taiKhoan = taiKhoan;
-            this.matKhau = matKhau;
+            this.hash = hash;
+            this.salt = salt;
         }
 
-        public Login_DTO(String id, String taiKhoan, String matKhau)
+        public Login_DTO(string id, string taiKhoan, string hash, string salt)
         {
             this.id = id;
             this.taiKhoan = taiKhoan;
-            this.matKhau = matKhau;
+            this.hash = hash;
+            this.salt = salt;
         }
 
         public string TaiKhoan { get => taiKhoan; set => taiKhoan = value; }
-        public string MatKhau { get => matKhau; set => matKhau = value; }
-        public String Id { get => id; set => id = value; }
+        public string Hash { get => hash; set => hash = value; }
+        public string Id { get => id; set => id = value; }
+        public string Salt { get => salt; set => salt = value; }
     }
 }

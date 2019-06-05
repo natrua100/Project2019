@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TakeCareOfPlants_DAL
+﻿namespace TakeCareOfPlants_DAL
 {
-    class MuaVatTu_SQL
+    public class MuaVatTu_SQL
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TakeCareOfPlants_DAL
 {
-    class VatTu_SQL
+    public class VatTu_SQL
     {
     }
 }

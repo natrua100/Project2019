@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TakeCareOfPlants_DTO
+﻿namespace TakeCareOfPlants_DTO
 {
-    class VatTu_DTO
+    internal class VatTu_DTO
     {
-        private String tenVatTu;
-        private String donVi;
+        private string id;
+        private string tenVatTu;
+        private string donVi;
         private int soLuong;
 
         public VatTu_DTO()
@@ -21,8 +18,17 @@ namespace TakeCareOfPlants_DTO
             this.soLuong = soLuong;
         }
 
+        public VatTu_DTO(string id, string tenVatTu, string donVi, int soLuong)
+        {
+            this.id = id;
+            this.tenVatTu = tenVatTu;
+            this.donVi = donVi;
+            this.soLuong = soLuong;
+        }
+
         public string TenVatTu { get => tenVatTu; set => tenVatTu = value; }
         public string DonVi { get => donVi; set => donVi = value; }
         public int SoLuong { get => soLuong; set => soLuong = value; }
+        public string Id { get => id; set => id = value; }
     }
 }

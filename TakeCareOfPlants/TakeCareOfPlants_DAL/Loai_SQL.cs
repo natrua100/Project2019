@@ -8,15 +8,17 @@ namespace TakeCareOfPlants_DAL
 {
     public class Loai_SQL
     {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        MySqlCommand command = new MySqlCommand();
-        MySqlDataReader reader;
+        private DatabaseConnection databaseConnection = new DatabaseConnection();
+        private MySqlCommand command;
+        private MySqlDataReader reader;
 
         public List<Loai_DTO> GetDataLoai()
         {
             List<Loai_DTO> loai_DTOs = new List<Loai_DTO>();
-            command.CommandText = "SELECT * FROM loaicaycanh";
-            command.Connection = databaseConnection.Connection;
+            command = new MySqlCommand {
+                CommandText = "SELECT * FROM loaicaycanh",
+                Connection = databaseConnection.Connection
+            };
             try {
                 databaseConnection.OpenConnect();
                 reader = command.ExecuteReader();

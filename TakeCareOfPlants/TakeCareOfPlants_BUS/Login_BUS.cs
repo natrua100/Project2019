@@ -7,31 +7,13 @@ namespace TakeCareOfPlants_BUS
 {
     public class Login_BUS
     {
-        Login_SQL loginSQL = new Login_SQL();
-        public Login_DTO GetValue()
-        {
-            return loginSQL.GetData();
-        }
+        private Login_SQL loginSQL = new Login_SQL();
 
-        public void InsertValue(Login_DTO loginDTO)
+        public bool LogInSuccess(string userName, string password)
         {
-            loginSQL.InsertData(loginDTO);
-        }
+            Login_DTO loginDTO = loginSQL.GetDataLogin(userName);
 
-        public string GenerateHash(string input, string salt)
-        {
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(input + salt);
-            var hashAlgoritm = MD5.Create();
-            bytes = hashAlgoritm.ComputeHash(bytes);
-            return Convert.ToBase64String(bytes);
-        }
-
-        public string CreateSalt(int size)
-        {
-            var rng = RandomNumberGenerator.Create();
-            var buff = new byte[size];
-            rng.GetBytes(buff);
-            return Convert.ToBase64String(buff);
+            return Function_BUS.GenerateHash(password, loginDTO.Salt) == loginDTO.Hash;
         }
     }
 }

@@ -24,15 +24,16 @@ DROP TABLE IF EXISTS `caycanh`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `caycanh` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `TenCay` varchar(50) NOT NULL,
+  `TenCay` varchar(45) NOT NULL,
   `IDLoai` int(10) unsigned NOT NULL,
-  `IDTinhTrang` int(11) unsigned NOT NULL,
+  `IDTinhTrang` int(10) unsigned NOT NULL,
   `NgayTrong` date NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `CC_LCC_ID_idx` (`IDLoai`) /*!80000 INVISIBLE */,
-  KEY `TT_CC_ID_idx` (`IDTinhTrang`),
-  CONSTRAINT `CC_LCC_ID` FOREIGN KEY (`IDLoai`) REFERENCES `loaicaycanh` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `CC_LC_ID_idx` (`IDLoai`),
+  KEY `CC_TT_ID_idx` (`IDTinhTrang`),
+  CONSTRAINT `CC_LC_ID` FOREIGN KEY (`IDLoai`) REFERENCES `loaicaycanh` (`ID`),
+  CONSTRAINT `CC_TT_ID` FOREIGN KEY (`IDTinhTrang`) REFERENCES `tinhtrang` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +42,7 @@ CREATE TABLE `caycanh` (
 
 LOCK TABLES `caycanh` WRITE;
 /*!40000 ALTER TABLE `caycanh` DISABLE KEYS */;
-INSERT INTO `caycanh` VALUES (5,'Hoa Giây',1,0,'0000-00-00'),(6,'Hoa Hồng',1,0,'0000-00-00'),(7,'Hoa Nhài',2,0,'0000-00-00'),(8,'Hoa Cúc',1,0,'0000-00-00'),(9,'Hoa Bằng Lăng',1,0,'0000-00-00'),(10,'Hoa Sen',2,0,'0000-00-00'),(11,'Hồng Sen',1,0,'0000-00-00'),(12,'Hồng Tím',1,0,'0000-00-00'),(13,'Hồng Núi',2,0,'0000-00-00'),(14,'Hồng Cam',2,0,'0000-00-00'),(15,'Râm Bụt',2,0,'0000-00-00'),(16,'Đỏ tím',2,0,'0000-00-00'),(17,'Sen Trắng',1,0,'0000-00-00'),(20,'Phấn Vàng',2,0,'0000-00-00'),(21,'Vàng Cam',1,0,'0000-00-00'),(22,'123',2,0,'0000-00-00'),(23,'321',2,0,'0000-00-00'),(24,'156',1,0,'0000-00-00'),(26,'654',2,0,'0000-00-00'),(28,'58',2,0,'0000-00-00'),(29,'9879',2,0,'0000-00-00'),(33,'khanh',2,0,'0000-00-00'),(35,'oooooo',2,0,'0000-00-00'),(36,'oooooo',2,0,'0000-00-00'),(37,'oooooo',2,0,'0000-00-00'),(39,'uuuuuuu',1,0,'0000-00-00'),(40,'qqqqqqqqq',2,0,'0000-00-00'),(41,'wwwwwwwwwwwww',1,0,'0000-00-00'),(42,'wwwwwwwwwwwww',1,0,'0000-00-00'),(43,'wwwwwwwwwwwwwgdgfd',1,0,'0000-00-00'),(44,'fdsfds',1,0,'0000-00-00'),(45,'fdsfds',1,0,'0000-00-00'),(46,'fdsfds',1,0,'0000-00-00'),(47,'fdsfds',1,0,'0000-00-00'),(48,'kkkkkk',1,0,'0000-00-00'),(49,'kkkkkk322332',1,0,'0000-00-00'),(50,'kkkkkk32233211111',1,0,'0000-00-00'),(51,'1111111',1,0,'0000-00-00'),(52,'khanhaaaaaaaaaa',2,0,'2019-05-16');
+INSERT INTO `caycanh` VALUES (34,'12412412412',2,2,'2019-05-16'),(35,'12412412412',2,2,'2019-05-14'),(36,'12412412412',2,2,'2019-05-30');
 /*!40000 ALTER TABLE `caycanh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,8 +58,8 @@ CREATE TABLE `caycanh_lich` (
   `IDLich` int(10) unsigned NOT NULL,
   `IDCayCanh` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `LCS_CC_ID_idx` (`IDCayCanh`),
   KEY `CC_LCS_ID_idx` (`IDLich`),
+  KEY `LCS_CC_ID_idx` (`IDCayCanh`),
   CONSTRAINT `CC_LCS_ID` FOREIGN KEY (`IDLich`) REFERENCES `lich` (`ID`),
   CONSTRAINT `LCS_CC_ID` FOREIGN KEY (`IDCayCanh`) REFERENCES `caycanh` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -85,11 +86,11 @@ CREATE TABLE `caycanh_vitri` (
   `IDCayCanh` int(10) unsigned NOT NULL,
   `IDViTri` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `CC_VT_ID_idx` (`IDCayCanh`),
   KEY `VT_CC_ID_idx` (`IDViTri`),
+  KEY `CC_VT_ID_idx` (`IDCayCanh`),
   CONSTRAINT `CC_VT_ID` FOREIGN KEY (`IDCayCanh`) REFERENCES `caycanh` (`ID`),
   CONSTRAINT `VT_CC_ID` FOREIGN KEY (`IDViTri`) REFERENCES `vitri` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +99,7 @@ CREATE TABLE `caycanh_vitri` (
 
 LOCK TABLES `caycanh_vitri` WRITE;
 /*!40000 ALTER TABLE `caycanh_vitri` DISABLE KEYS */;
-INSERT INTO `caycanh_vitri` VALUES (1,5,2),(2,6,1),(3,6,1),(4,7,1),(5,8,2),(6,8,1),(8,20,2),(9,21,2),(10,22,2),(11,23,1),(12,24,1),(14,26,2),(16,28,1),(17,29,1),(21,33,1),(23,48,2),(24,49,2),(25,50,2),(26,51,2),(27,52,1);
+INSERT INTO `caycanh_vitri` VALUES (61,34,1),(62,35,1),(63,36,1);
 /*!40000 ALTER TABLE `caycanh_vitri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,10 +214,11 @@ DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `TaiKhoan` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `MatKhau` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MatKhau_Hash` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MatKhau_Salt` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `STT` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,6 +227,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
+INSERT INTO `login` VALUES (7,'Khanh123','lTillURIr0kjWnDxhQ2bcQ==','QRUC5Q2GE/X9vc/e6SNUh/NSEnrZXlH2GnQxk9VqRLYUXyDz4qPDhvzHPFuf+HwWDeA8ZKmgiv36vUYJz0nkT93RuztNmN40b4QucfmOCP4YC2CGbuFfdXxKuGpllEsnQUWw6Q=='),(9,'Khanhahahah','0nrsCHoijLZDM3xW5mEiVA==','ABlCkETjUcWKVITC32JvWRu8OAEllR5BBse70Hcmq98Rn33muTLgedgz3AlfxCB83GMxIVpwSObRKS50WaVRUwC1igr1+hloNEVUqZVLeV4xvwA9QJWMJByBh3BbtgK8vEAjMA=='),(10,'Khanh123+','fWvBBzUWLdGfI3TBSGdOsQ==','aoyLPGkm9xVWcK590m2lW8S3jwtQydouabuQXvZsNb7n60VJm/TwHbFBOK0RqsHl5v2PoCxeKz1/3oCFAbBpmqWREmLMr6o7QTV85wwmIBIHxMfVRakUbtMCMhRkm4U257ZDwg=='),(11,'Khanh1234','zfRgNuK9OLT/7pEotuxSog==','QLiX4c7vJBVkIPcyli6ivGXLlJuLoWHWpuFvdhlIcJg6qQSFUoxhlf91lRKyEYEqDGdqYRVdlPu9eim7/HDSJ/tGdVxRsKANy+6da5L2+NS7wmwPchvYtIm7XA/xlUvFeZSDIw==');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,13 +266,12 @@ DROP TABLE IF EXISTS `quydinh`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `quydinh` (
   `ID` int(1) unsigned NOT NULL AUTO_INCREMENT,
-  `ViTri` tinyint(100) NOT NULL DEFAULT '2',
   `SoCayToiDa` int(10) NOT NULL DEFAULT '4',
   `SoLoaiVatTu` int(100) NOT NULL DEFAULT '2',
-  `SoTien` bigint(1) NOT NULL DEFAULT '100000',
+  `SoTienToiDa` bigint(1) NOT NULL DEFAULT '100000',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `STT` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +280,7 @@ CREATE TABLE `quydinh` (
 
 LOCK TABLES `quydinh` WRITE;
 /*!40000 ALTER TABLE `quydinh` DISABLE KEYS */;
-INSERT INTO `quydinh` VALUES (1,1,5,0,500000),(2,0,10,1,250000);
+INSERT INTO `quydinh` VALUES (1,4,2,100000),(5,5,3,150000),(6,7,6,300000);
 /*!40000 ALTER TABLE `quydinh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +295,7 @@ CREATE TABLE `tinhtrang` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `TinhTrang` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,6 +304,7 @@ CREATE TABLE `tinhtrang` (
 
 LOCK TABLES `tinhtrang` WRITE;
 /*!40000 ALTER TABLE `tinhtrang` DISABLE KEYS */;
+INSERT INTO `tinhtrang` VALUES (1,'Mới'),(2,'Cũ'),(3,'Thiếu Nước'),(4,'Thiếu Phân');
 /*!40000 ALTER TABLE `tinhtrang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,4 +396,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-28  2:52:59
+-- Dump completed on 2019-06-06  3:56:22

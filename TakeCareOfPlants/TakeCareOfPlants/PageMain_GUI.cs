@@ -5,15 +5,17 @@ namespace TakeCareOfPlants
 {
     public partial class PageMain_GUI : Form
     {
-        static PageMain_GUI _obj;
+        private static PageMain_GUI pageMain;
 
         public static PageMain_GUI Instance
         {
+            set => pageMain = value;
+
             get {
-                if (_obj == null) {
-                    _obj = new PageMain_GUI();
+                if (pageMain == null) {
+                    pageMain = new PageMain_GUI();
                 }
-                return _obj;
+                return pageMain;
             }
         }
 
@@ -24,91 +26,170 @@ namespace TakeCareOfPlants
 
         public Panel PanelController
         {
-            get {
-                return Panel_Center_Controller;
-            }
+            get => Panel_Center_Controller;
 
-            set {
-                Panel_Center_Controller = value;
-            }
+            set => Panel_Center_Controller = value;
         }
 
         public Button BackButton
         {
-            get {
-                return null;
-            }
+            get => null;
 
             set {
             }
         }
 
+        private void PageMain_GUI_Load(object sender, EventArgs e)
+        {
+            ShowControl(UI_Home.Instance);
+        }
+
         private void Menu_Click(object sender, EventArgs e)
         {
-            if (Panel_Menu.Width == 150) {
+            if (Panel_Menu.Width == 150) { 
+                Panel_Menu.Visible = false;
+                Icon_Main.Visible = false;
                 Panel_Menu.Width = 50;
+                Icon_Plant_Eat.Visible = true;
+                Menu_Transition.ShowSync(Panel_Menu);
             } else {
+                Panel_Menu.Visible = false;
+                Icon_Plant_Eat.Visible = false;
                 Panel_Menu.Width = 150;
+                Icon_Main.Visible = true;
+                Menu_Transition.ShowSync(Panel_Menu);
             }
         }
 
         private void Home_Button_Click(object sender, EventArgs e)
         {
-
-            _obj = this;
-
-            UI_Home uiHome = new UI_Home {
-                Dock = DockStyle.Fill
-            };
-            PanelController.Controls.Add(uiHome);
+            TitleClick("Take Care Of Plants", UI_Home.Instance);
         }
 
         private void Plant_Click(object sender, EventArgs e)
         {
-
+            TitleClick("Plants", UI_Plant.Instance);
         }
 
         private void Calender_Click(object sender, EventArgs e)
         {
-
+            TitleClick("Calender", UI_Calender.Instance);
         }
 
         private void Materials_Button_Click(object sender, EventArgs e)
         {
-
+            TitleClick("Materials", UI_Materials.Instance);
         }
 
         private void Reports_Button_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void PageMain_GUI_Load(object sender, EventArgs e)
-        {
-
+            TitleClick("Reports", UI_Reports.Instance);
         }
 
         private void Close_Windows_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Function_GUI.CloseApp();
         }
 
         private void Mini_Windows_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            //pageMain = this;
+            //Function_GUI.HideShowPage(pageMain, PageLogin_GUI.Instance);
+            //Instance = new PageMain_GUI();
+            WindowState = FormWindowState.Minimized;
         }
 
         private void Restore_Windows_Click(object sender, EventArgs e)
         {
-            if(this.WindowState == FormWindowState.Maximized) {
-                this.WindowState = FormWindowState.Normal;
+            if (WindowState == FormWindowState.Maximized) {
+                WindowState = FormWindowState.Normal;
             } else {
-                this.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        public void ShowControl(Control control)
+        {
+            if (!PanelController.Controls.Contains(control)) {
+                PanelController.Controls.Add(control);
+                control.Dock = DockStyle.Fill;
+                control.BringToFront();
+            } else {
+                control.BringToFront();
+            }
+        }
+
+        private void TitleClick(string title, Control control)
+        {
+            pageMain = this;
+            Topic_Title.Text = title;
+            if (Panel_Menu.Width == 150) {
+                Panel_Menu.Visible = false;
+                Panel_Menu.Width = 50;
+                Menu_Transition.ShowSync(Panel_Menu);
+            }
+            ShowControl(control);
+        }
+
+        private void Setting_Button_Click(object sender, EventArgs e)
+        {
+            PageSetting_GUI.Instance.Show();
+            PageSetting_GUI.Instance.BringToFront();
+
+            if (!IsFormOpen(typeof(PageSetting_GUI))) {
+                PageSetting_GUI.Instance.BringToFront();
+            }
+        }
+
+        private void TimeInc_Tick(object sender, EventArgs e)
+        {
+            DateTime_Title.Text = DateTime.Now.ToLongTimeString();
+            TimeInc.Start();
+        }
+
+        public bool IsFormOpen(Type FormType)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form is PageSetting_GUI) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get {
+                CreateParams cp = base.CreateParams;
+                if (!Function_GUI.CheckAeroEnabled()) {
+                    cp.ClassStyle |= (int)Function_GUI.ShadowBorder.CS_DROPSHADOW;
+                }
+                return cp;
+            }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg) {
+                case (int)Function_GUI.ShadowBorder.WM_NCPAINT:
+                    if (Function_GUI.CheckAeroEnabled()) {
+                        int v = 2;
+                        Function_GUI.DwmSetWindowAttribute(Handle, 2, ref v, 4);
+                        Function_GUI.MARGINS margins = new Function_GUI.MARGINS() {
+                            bottomHeight = 1,
+                            leftWidth = 0,
+                            rightWidth = 0,
+                            topHeight = 0
+                        };
+                        Function_GUI.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            base.WndProc(ref m);
+            if (m.Msg == (int)Function_GUI.ShadowBorder.WM_NCHITTEST && (int)m.Result == (int)Function_GUI.ShadowBorder.HTCLIENT) {
+                m.Result = (IntPtr)Function_GUI.ShadowBorder.HTCAPTION;
             }
         }
     }

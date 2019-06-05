@@ -1,31 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TakeCareOfPlants_DTO
+﻿namespace TakeCareOfPlants_DTO
 {
-    class QuyDinh_DTO
+    public class QuyDinh_DTO
     {
-        private int viTri;
+        private string id;
         private int soCayToiDa;
         private int soLoaiVatTu;
-        private long soTien;
+        private long soTienToiDa;
 
         public QuyDinh_DTO()
         {
         }
 
-        public QuyDinh_DTO(int viTri, int soCayToiDa, int soLoaiVatTu, long soTien)
+        public QuyDinh_DTO(int soCayToiDa, int soLoaiVatTu, long soTienToiDa)
         {
-            this.viTri = viTri;
             this.soCayToiDa = soCayToiDa;
             this.soLoaiVatTu = soLoaiVatTu;
-            this.soTien = soTien;
+            this.soTienToiDa = soTienToiDa;
         }
 
-        public int ViTri { get => viTri; set => viTri = value; }
+        public QuyDinh_DTO(string id, int soCayToiDa, int soLoaiVatTu, long soTienToiDa)
+        {
+            this.id = id;
+            this.soCayToiDa = soCayToiDa;
+            this.soLoaiVatTu = soLoaiVatTu;
+            this.soTienToiDa = soTienToiDa;
+        }
+
+        public string Id { get => id; set => id = value; }
         public int SoCayToiDa { get => soCayToiDa; set => soCayToiDa = value; }
         public int SoLoaiVatTu { get => soLoaiVatTu; set => soLoaiVatTu = value; }
-        public long SoTien { get => soTien; set => soTien = value; }
+        public long SoTienToiDa { get => soTienToiDa; set => soTienToiDa = value; }
     }
 }

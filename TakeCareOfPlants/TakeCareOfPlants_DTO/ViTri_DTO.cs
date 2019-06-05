@@ -1,30 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TakeCareOfPlants_DTO
+﻿namespace TakeCareOfPlants_DTO
 {
     public class ViTri_DTO
     {
-        private String id;
-        private String tenViTri;
+        private string id;
+        private string tenViTri;
 
         public ViTri_DTO()
         {
         }
 
-        public ViTri_DTO(String tenViTri)
+        public ViTri_DTO(string tenViTri)
         {
             this.tenViTri = tenViTri;
         }
 
-        public ViTri_DTO(String id, String tenViTri)
+        public ViTri_DTO(string id, string tenViTri)
         {
             this.id = id;
             this.tenViTri = tenViTri;
         }
 
-        public String TenViTri { get => tenViTri; set => tenViTri = value; }
-        public String Id { get => id; set => id = value; }
+        public string TenViTri { get => tenViTri; set => tenViTri = value; }
+        public string Id { get => id; set => id = value; }
     }
 }

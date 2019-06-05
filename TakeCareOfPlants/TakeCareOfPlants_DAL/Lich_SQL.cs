@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TakeCareOfPlants_DAL
+﻿namespace TakeCareOfPlants_DAL
 {
-    class Lich_SQL
+    public class Lich_SQL
     {
     }
 }
