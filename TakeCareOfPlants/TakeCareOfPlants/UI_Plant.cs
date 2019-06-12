@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using TakeCareOfPlants_BUS;
 using TakeCareOfPlants_DTO;
@@ -9,6 +11,9 @@ namespace TakeCareOfPlants
     {
         private static UI_Plant uiPlant;
         private CayCanh_BUS cayCanhBUS = new CayCanh_BUS();
+        private List<ViTri_DTO> listViTri;
+        private List<Loai_DTO> listLoai;
+        private List<TinhTrang_DTO> listTinhTrang;
 
         public static UI_Plant Instance
         {
@@ -22,37 +27,37 @@ namespace TakeCareOfPlants
 
         public UI_Plant()
         {
+            listViTri = cayCanhBUS.GetValueViTri();
+            listLoai = cayCanhBUS.GetValueLoai();
+            listTinhTrang = cayCanhBUS.GetValueTinhTrang();
             InitializeComponent();
         }
 
         private void UI_Home_Load(object sender, EventArgs e)
         {
-            foreach (ViTri_DTO viTriDTO in cayCanhBUS.GetValueViTri()) {
-                Planting_Location_ComboBox.Items.Add(viTriDTO.TenViTri);
+            Update_Button.Enabled = false;
+            Update_Button.BackColor = Color.LightSlateGray;
+
+            foreach (ViTri_DTO viTriDTO in listViTri) {
+                Planting_Location_ComboBox.AddItem(viTriDTO.TenViTri);
             }
 
-            foreach (Loai_DTO loaiDTO in cayCanhBUS.GetValueLoai()) {
-                Type_Of_Plant_ComboBox.Items.Add(loaiDTO.Loai);
+            foreach (Loai_DTO loaiDTO in listLoai) {
+                Type_Of_Plant_ComboBox.AddItem(loaiDTO.Loai);
             }
 
-            foreach (TinhTrang_DTO tinhTrangDTO in cayCanhBUS.GetValueTinhTrang()) {
-                Status_ComboBox.Items.Add(tinhTrangDTO.TinhTrang);
+            foreach (TinhTrang_DTO tinhTrangDTO in listTinhTrang) {
+                Status_ComboBox.AddItem(tinhTrangDTO.TinhTrang);
             }
         }
 
         private void Create_Button_Click(object sender, EventArgs e)
         {
-            Loai_DTO loaiDTO = new Loai_DTO(
-                Type_Of_Plant_ComboBox.selectedIndex.ToString(),
-                Type_Of_Plant_ComboBox.selectedValue);
+            Loai_DTO loaiDTO = listLoai.Find(r => r.Loai == Type_Of_Plant_ComboBox.selectedValue);
 
-            ViTri_DTO viTriDTO = new ViTri_DTO(
-                Planting_Location_ComboBox.selectedIndex.ToString(),
-                Planting_Location_ComboBox.selectedValue);
+            ViTri_DTO viTriDTO = listViTri.Find(v => v.TenViTri == Planting_Location_ComboBox.selectedValue);
 
-            TinhTrang_DTO tinhTrangDTO = new TinhTrang_DTO(
-                Status_ComboBox.selectedIndex.ToString(),
-                Status_ComboBox.selectedValue);
+            TinhTrang_DTO tinhTrangDTO = listTinhTrang.Find(t => t.TinhTrang == Status_ComboBox.selectedValue);
 
             CayCanh_DTO cayCanhDTO = new CayCanh_DTO(
                 Name_Plant_Text.Text,
@@ -101,6 +106,25 @@ namespace TakeCareOfPlants
                     .FormattedValue.ToString();
                 Planing_Data_DateTime.Value = DateTime.ParseExact(time, "dd/MM/yyyy", null);
             }
+
+            if (Create_Button.Enabled) {
+                Create_Button.Enabled = false;
+                Update_Button.Enabled = true;
+            }
+        }
+
+        private void Clear_Button_Click(object sender, EventArgs e)
+        {
+            Create_Button.Enabled = true;
+            Create_Button.BackColor = Color.RoyalBlue;
+            Update_Button.Enabled = false;
+            Update_Button.BackColor = Color.LightSlateGray;
+
+            Name_Plant_Text.Text = "";
+            Type_Of_Plant_ComboBox.selectedIndex = 0;
+            Planting_Location_ComboBox.selectedIndex = 0;
+            Status_ComboBox.selectedIndex = 0;
+            Planing_Data_DateTime.Value = DateTime.Now;
         }
     }
 }

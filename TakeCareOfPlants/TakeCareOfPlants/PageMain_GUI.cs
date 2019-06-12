@@ -133,64 +133,13 @@ namespace TakeCareOfPlants
 
         private void Setting_Button_Click(object sender, EventArgs e)
         {
-            PageSetting_GUI.Instance.Show();
-            PageSetting_GUI.Instance.BringToFront();
-
-            if (!IsFormOpen(typeof(PageSetting_GUI))) {
-                PageSetting_GUI.Instance.BringToFront();
-            }
+            PageSetting_GUI.Instance.ShowDialog();
         }
 
         private void TimeInc_Tick(object sender, EventArgs e)
         {
             DateTime_Title.Text = DateTime.Now.ToLongTimeString();
             TimeInc.Start();
-        }
-
-        public bool IsFormOpen(Type FormType)
-        {
-            foreach (Form form in Application.OpenForms) {
-                if (form is PageSetting_GUI) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get {
-                CreateParams cp = base.CreateParams;
-                if (!Function_GUI.CheckAeroEnabled()) {
-                    cp.ClassStyle |= (int)Function_GUI.ShadowBorder.CS_DROPSHADOW;
-                }
-                return cp;
-            }
-        }
-
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg) {
-                case (int)Function_GUI.ShadowBorder.WM_NCPAINT:
-                    if (Function_GUI.CheckAeroEnabled()) {
-                        int v = 2;
-                        Function_GUI.DwmSetWindowAttribute(Handle, 2, ref v, 4);
-                        Function_GUI.MARGINS margins = new Function_GUI.MARGINS() {
-                            bottomHeight = 1,
-                            leftWidth = 0,
-                            rightWidth = 0,
-                            topHeight = 0
-                        };
-                        Function_GUI.DwmExtendFrameIntoClientArea(Handle, ref margins);
-                    }
-                    break;
-                default:
-                    break;
-            }
-            base.WndProc(ref m);
-            if (m.Msg == (int)Function_GUI.ShadowBorder.WM_NCHITTEST && (int)m.Result == (int)Function_GUI.ShadowBorder.HTCLIENT) {
-                m.Result = (IntPtr)Function_GUI.ShadowBorder.HTCAPTION;
-            }
         }
     }
 }

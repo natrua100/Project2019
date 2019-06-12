@@ -14,6 +14,12 @@ namespace TakeCareOfPlants_DTO
         {
         }
 
+        public CayCanh_DTO(string id, string tenCay)
+        {
+            this.id = id;
+            this.tenCay = tenCay;
+        }
+
         public CayCanh_DTO(string tenCay, Loai_DTO loai_DTO, TinhTrang_DTO tinhTrang_DTO, DateTime ngayTrong)
         {
             this.tenCay = tenCay;

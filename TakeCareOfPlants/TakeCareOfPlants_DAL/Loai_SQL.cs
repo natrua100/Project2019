@@ -24,16 +24,19 @@ namespace TakeCareOfPlants_DAL
                 reader = command.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        loai_DTOs.Add(new Loai_DTO(reader.GetString("ID"), reader.GetString("loai")));
+                        loai_DTOs.Add(
+                            new Loai_DTO(
+                                reader.GetString("ID"), 
+                                reader.GetString("loai")));
                     }
                 }
                 reader.Close();
                 command.Dispose();
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
-                MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 command.Dispose();
                 databaseConnection.CloseConnect();
+                throw ex;
             }
             return loai_DTOs;
         }

@@ -188,6 +188,7 @@
             this.Remember_Password_Check.Name = "Remember_Password_Check";
             this.Remember_Password_Check.Size = new System.Drawing.Size(20, 20);
             this.Remember_Password_Check.TabIndex = 9;
+            this.Remember_Password_Check.TabStop = false;
             // 
             // Remember_Password_Text
             // 
@@ -295,6 +296,7 @@
             this.Sign_In_Button.selected = false;
             this.Sign_In_Button.Size = new System.Drawing.Size(321, 43);
             this.Sign_In_Button.TabIndex = 15;
+            this.Sign_In_Button.TabStop = false;
             this.Sign_In_Button.Text = "Sign In";
             this.Sign_In_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Sign_In_Button.Textcolor = System.Drawing.Color.White;

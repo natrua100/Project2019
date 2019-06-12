@@ -7,24 +7,24 @@ namespace TakeCareOfPlants_DTO
     public class DonVi_DTO
     {
         private String id;
-        private String donvi;
+        private String donVi;
 
         public DonVi_DTO()
         {
         }
 
-        public DonVi_DTO(string donvi)
+        public DonVi_DTO(string donVi)
         {
-            this.donvi = donvi;
+            this.donVi = donVi;
         }
 
-        public DonVi_DTO(string id , string donvi)
+        public DonVi_DTO(string id , string donVi)
         {
             this.id = id;
-            this.donvi = donvi;
+            this.donVi = donVi;
         }
 
-        public string Donvi { get => donvi; set => donvi = value; }
+        public string DonVi { get => donVi; set => donVi = value; }
         public string Id { get => id; set => id = value; }
     }
 }

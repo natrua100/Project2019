@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace TakeCareOfPlants
 {
@@ -72,6 +75,7 @@ namespace TakeCareOfPlants
         public static void HidePage(Form form)
         {
             AnimateWindow(form.Handle, 1000, AnimateWindowFlags.AW_BLEND | AnimateWindowFlags.AW_HIDE);
+            form.Visible = false;
         }
 
         public static void ShowPage(Form form)
@@ -98,10 +102,56 @@ namespace TakeCareOfPlants
         {
             if (Environment.OSVersion.Version.Major >= 6) {
                 int enabled = 0;
-                Function_GUI.DwmIsCompositionEnabled(ref enabled);
+                DwmIsCompositionEnabled(ref enabled);
                 return (enabled == 1) ? true : false;
             }
             return false;
+        }
+
+        public static void HideFormActive(Type formType)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() != formType) {
+                    form.Hide();
+                }
+            }
+        }
+
+        public static void IsNumberic(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) {
+                e.Handled = true;
+            }
+        }
+
+        public static void IsLetter(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && (e.KeyChar != (char)Keys.Space)) {
+                e.Handled = true;
+            }
+        }
+
+        public static void VisualListItem(RadCheckedDropDownList data, VisualItemFormattingEventArgs args)
+        {
+            args.VisualItem.Font = new Font(family: data.Font.FontFamily, emSize: 12);
+            bool itemChecked = ((RadCheckedListDataItem)args.VisualItem.Data).Checked;
+            if (itemChecked) {
+                args.VisualItem.ForeColor = Color.Green;
+            } else {
+                args.VisualItem.ForeColor = Color.Red;
+            }
+        }
+
+        public static void TextBlock(TextBlockFormattingEventArgs e)
+        {
+            if (e.TextBlock is TokenizedTextBlockElement token) {
+                token.ForeColor = Color.DarkBlue;
+                token.DrawFill = false;
+                token.BorderColor = Color.Red;
+                token.BorderWidth = 1.3f;
+                token.DrawBorder = false;
+                token.BorderGradientStyle = GradientStyles.Solid;
+            }
         }
     }
 }

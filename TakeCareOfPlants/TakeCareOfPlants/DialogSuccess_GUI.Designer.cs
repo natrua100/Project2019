@@ -29,37 +29,37 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogSuccess_GUI));
-            this.FormFadeTransition = new Bunifu.Framework.UI.BunifuFormFadeTransition(this.components);
-            this.Icon_Box = new System.Windows.Forms.PictureBox();
+            this.FormSuccessFadeTransition = new Bunifu.Framework.UI.BunifuFormFadeTransition(this.components);
+            this.Success_Box = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Time_Show_Button = new System.Windows.Forms.Timer(this.components);
             this.OK_Button = new Bunifu.Framework.UI.BunifuFlatButton();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Success_Box)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // FormFadeTransition
+            // FormSuccessFadeTransition
             // 
-            this.FormFadeTransition.Delay = 1;
-            this.FormFadeTransition.TransitionEnd += new System.EventHandler(this.FormFadeTransition_TransitionEnd);
+            this.FormSuccessFadeTransition.Delay = 1;
+            this.FormSuccessFadeTransition.TransitionEnd += new System.EventHandler(this.FormFadeTransition_TransitionEnd);
             // 
-            // Icon_Box
+            // Success_Box
             // 
-            this.Icon_Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Icon_Box.Enabled = false;
-            this.Icon_Box.Image = ((System.Drawing.Image)(resources.GetObject("Icon_Box.Image")));
-            this.Icon_Box.Location = new System.Drawing.Point(0, 0);
-            this.Icon_Box.Name = "Icon_Box";
-            this.Icon_Box.Size = new System.Drawing.Size(241, 132);
-            this.Icon_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Icon_Box.TabIndex = 0;
-            this.Icon_Box.TabStop = false;
-            this.Icon_Box.Visible = false;
+            this.Success_Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Success_Box.Enabled = false;
+            this.Success_Box.Image = ((System.Drawing.Image)(resources.GetObject("Success_Box.Image")));
+            this.Success_Box.Location = new System.Drawing.Point(0, 0);
+            this.Success_Box.Name = "Success_Box";
+            this.Success_Box.Size = new System.Drawing.Size(241, 132);
+            this.Success_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Success_Box.TabIndex = 0;
+            this.Success_Box.TabStop = false;
+            this.Success_Box.Visible = false;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.Icon_Box);
+            this.panel1.Controls.Add(this.Success_Box);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -137,7 +137,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DialogSuccess";
             this.Load += new System.EventHandler(this.DialogSuccess_GUI_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Success_Box)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -145,8 +145,8 @@
 
         #endregion
 
-        private Bunifu.Framework.UI.BunifuFormFadeTransition FormFadeTransition;
-        private System.Windows.Forms.PictureBox Icon_Box;
+        private Bunifu.Framework.UI.BunifuFormFadeTransition FormSuccessFadeTransition;
+        private System.Windows.Forms.PictureBox Success_Box;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer Time_Show_Button;

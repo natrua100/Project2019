@@ -11,10 +11,11 @@ namespace TakeCareOfPlants
     public partial class PageSetting_GUI : Form
     {
         private static PageSetting_GUI pageSetting;
-        private List<QuyDinh_DTO> quyDinh_DTOs = new List<QuyDinh_DTO>();
+        private List<QuyDinh_DTO> quyDinh_DTOs;
 
         public PageSetting_GUI()
         {
+            quyDinh_DTOs = QuyDinh_BUS.GetValueQuyDinh();
             InitializeComponent();
         }
 
@@ -28,9 +29,10 @@ namespace TakeCareOfPlants
             }
         }
 
+        public List<QuyDinh_DTO> QuyDinh_DTOs { get => quyDinh_DTOs;}
+
         private void PageSetting_GUI_Load(object sender, EventArgs e)
         {
-            quyDinh_DTOs = QuyDinh_BUS.GetValueQuyDinh();
             NumberPlant_Text.Text = quyDinh_DTOs[1].SoCayToiDa.ToString();
             TypeMaterial_Text.Text = quyDinh_DTOs[1].SoLoaiVatTu.ToString();
             AmountMoney_Text.Text = string.Format("{0:#,#}", quyDinh_DTOs[1].SoTienToiDa);
@@ -69,6 +71,31 @@ namespace TakeCareOfPlants
             Function_GUI.HidePage(pageSetting);
         }
 
+        private void AmountMoney_Text_TextChanged(object sender, EventArgs e)
+        {
+            if (AmountMoney_Text.Text != "") {
+                AmountMoney_Text.Text = string.Format("{0:#,#}", double.Parse(AmountMoney_Text.Text));
+                AmountMoney_Text.SelectionStart = AmountMoney_Text.Text.Length;
+            }
+        }
+
+        private void NumberPlant_Text_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Function_GUI.IsNumberic(e);
+            NumberPlant_Text.MaxLength = 2;
+        }
+
+        private void TypeMaterial_Text_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Function_GUI.IsNumberic(e);
+            TypeMaterial_Text.MaxLength = 2;
+        }
+
+        private void AmountMoney_Text_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Function_GUI.IsNumberic(e);
+        }
+
         protected override CreateParams CreateParams
         {
             get {
@@ -82,7 +109,6 @@ namespace TakeCareOfPlants
 
         protected override void WndProc(ref Message m)
         {
-
             switch (m.Msg) {
                 case (int)Function_GUI.ShadowBorder.WM_NCPAINT:
                     if (Function_GUI.CheckAeroEnabled()) {
@@ -110,12 +136,6 @@ namespace TakeCareOfPlants
             if (m.Msg == (int)Function_GUI.ShadowBorder.WM_NCHITTEST && (int)m.Result == (int)Function_GUI.ShadowBorder.HTCLIENT) {
                 m.Result = (IntPtr)Function_GUI.ShadowBorder.HTCAPTION;
             }
-        }
-
-        private void AmountMoney_Text_TextChanged(object sender, EventArgs e)
-        {
-            AmountMoney_Text.Text = string.Format("{0:#,#}", double.Parse(AmountMoney_Text.Text));
-            AmountMoney_Text.SelectionStart = AmountMoney_Text.Text.Length;
         }
     }
 }

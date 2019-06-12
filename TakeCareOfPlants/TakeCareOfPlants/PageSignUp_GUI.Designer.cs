@@ -82,6 +82,7 @@
             this.Sign_Up_Button.selected = false;
             this.Sign_Up_Button.Size = new System.Drawing.Size(321, 43);
             this.Sign_Up_Button.TabIndex = 31;
+            this.Sign_Up_Button.TabStop = false;
             this.Sign_Up_Button.Text = "Sign Up";
             this.Sign_Up_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Sign_Up_Button.Textcolor = System.Drawing.Color.White;
@@ -295,6 +296,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(399, 671);
             this.Controls.Add(this.Error_Title);
             this.Controls.Add(this.CheckCorrect_Button);

@@ -60,7 +60,7 @@ namespace TakeCareOfPlants
                 if (Function_BUS.CheckPassword(Password_Text.Text)) {
                     if (Password_Text.Text == Confirm_Password_Text.Text) {
                         if (signUpBUS.InsertValueSignUp(User_Name_Text.Text, Password_Text.Text)) {
-                            DialogSuccess_GUI.Instance.Show();
+                            DialogSuccess_GUI.Instance.ShowDialog();
                         } else {
                             Error_Title.Text = "Username is available";
                             Error_Title.Visible = true;

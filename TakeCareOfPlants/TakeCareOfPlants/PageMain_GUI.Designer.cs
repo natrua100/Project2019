@@ -46,6 +46,7 @@
             this.Menu_Button = new Bunifu.Framework.UI.BunifuImageButton();
             this.Reports_Button = new Bunifu.Framework.UI.BunifuFlatButton();
             this.Panel_Menu = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.Icon_Main = new System.Windows.Forms.PictureBox();
             this.Icon_Plant_Eat = new Bunifu.Framework.UI.BunifuImageButton();
             this.Menu_Transition = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.Panel_Main = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@
             this.Panel_Center_Controller = new System.Windows.Forms.Panel();
             this.TimeInc = new System.Windows.Forms.Timer(this.components);
             this.Logo_Transition = new BunifuAnimatorNS.BunifuTransition(this.components);
-            this.Icon_Main = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.App_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Back_Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Mini_Windows)).BeginInit();
@@ -64,10 +64,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.Restore_Windows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Menu_Button)).BeginInit();
             this.Panel_Menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_Plant_Eat)).BeginInit();
             this.Panel_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Setting_Button)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_Main)).BeginInit();
             this.SuspendLayout();
             // 
             // App_Icon
@@ -425,6 +425,19 @@
             this.Panel_Menu.Size = new System.Drawing.Size(67, 580);
             this.Panel_Menu.TabIndex = 0;
             // 
+            // Icon_Main
+            // 
+            this.Menu_Transition.SetDecoration(this.Icon_Main, BunifuAnimatorNS.DecorationType.None);
+            this.Logo_Transition.SetDecoration(this.Icon_Main, BunifuAnimatorNS.DecorationType.None);
+            this.Icon_Main.Image = ((System.Drawing.Image)(resources.GetObject("Icon_Main.Image")));
+            this.Icon_Main.Location = new System.Drawing.Point(8, 5);
+            this.Icon_Main.Name = "Icon_Main";
+            this.Icon_Main.Size = new System.Drawing.Size(130, 127);
+            this.Icon_Main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Icon_Main.TabIndex = 6;
+            this.Icon_Main.TabStop = false;
+            this.Icon_Main.Visible = false;
+            // 
             // Icon_Plant_Eat
             // 
             this.Icon_Plant_Eat.BackColor = System.Drawing.Color.Transparent;
@@ -515,7 +528,7 @@
             this.VerticalDivider1.BackColor = System.Drawing.Color.DodgerBlue;
             this.Logo_Transition.SetDecoration(this.VerticalDivider1, BunifuAnimatorNS.DecorationType.None);
             this.Menu_Transition.SetDecoration(this.VerticalDivider1, BunifuAnimatorNS.DecorationType.None);
-            this.VerticalDivider1.Location = new System.Drawing.Point(1174, 4);
+            this.VerticalDivider1.Location = new System.Drawing.Point(1180, 4);
             this.VerticalDivider1.Name = "VerticalDivider1";
             this.VerticalDivider1.Size = new System.Drawing.Size(3, 35);
             this.VerticalDivider1.TabIndex = 0;
@@ -574,19 +587,6 @@
             animation1.TransparencyCoeff = 1F;
             this.Logo_Transition.DefaultAnimation = animation1;
             // 
-            // Icon_Main
-            // 
-            this.Menu_Transition.SetDecoration(this.Icon_Main, BunifuAnimatorNS.DecorationType.None);
-            this.Logo_Transition.SetDecoration(this.Icon_Main, BunifuAnimatorNS.DecorationType.None);
-            this.Icon_Main.Image = ((System.Drawing.Image)(resources.GetObject("Icon_Main.Image")));
-            this.Icon_Main.Location = new System.Drawing.Point(8, 5);
-            this.Icon_Main.Name = "Icon_Main";
-            this.Icon_Main.Size = new System.Drawing.Size(130, 127);
-            this.Icon_Main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Icon_Main.TabIndex = 6;
-            this.Icon_Main.TabStop = false;
-            this.Icon_Main.Visible = false;
-            // 
             // PageMain_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -612,11 +612,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Restore_Windows)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Menu_Button)).EndInit();
             this.Panel_Menu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Icon_Main)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_Plant_Eat)).EndInit();
             this.Panel_Main.ResumeLayout(false);
             this.Panel_Main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Setting_Button)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Icon_Main)).EndInit();
             this.ResumeLayout(false);
 
         }

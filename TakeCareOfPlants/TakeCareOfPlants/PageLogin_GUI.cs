@@ -105,7 +105,8 @@ namespace TakeCareOfPlants
             }
             if (User_Name_Text.Text != "" && Password_Text.Text != "") {
                 if (loginBUS.LogInSuccess(User_Name_Text.Text, Password_Text.Text)) {
-                    DialogSuccess_GUI.Instance.Show();
+
+                    DialogSuccess_GUI.Instance.ShowDialog();
                 } else {
                     Error_Text.Text = "The username or password is incorrect";
                     Error_Text.Visible = true;

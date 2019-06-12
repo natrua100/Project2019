@@ -55,6 +55,10 @@
             this.List_Plant_Panel = new System.Windows.Forms.Panel();
             this.Status_Title = new System.Windows.Forms.Label();
             this.Status_ComboBox = new Bunifu.Framework.UI.BunifuDropdown();
+            this.Update_Button = new System.Windows.Forms.Button();
+            this.Update_Plant_Elipse = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.Clear_Button = new System.Windows.Forms.Button();
+            this.Clear_Plant_Elipse = new Bunifu.Framework.UI.BunifuElipse(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.List_Plant_DataGrid)).BeginInit();
             this.List_Plant_Panel.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +70,7 @@
             this.Name_Plant_Title.AutoSize = true;
             this.Name_Plant_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name_Plant_Title.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.Name_Plant_Title.Location = new System.Drawing.Point(24, 16);
+            this.Name_Plant_Title.Location = new System.Drawing.Point(24, 42);
             this.Name_Plant_Title.Name = "Name_Plant_Title";
             this.Name_Plant_Title.Size = new System.Drawing.Size(119, 25);
             this.Name_Plant_Title.TabIndex = 6;
@@ -79,7 +83,7 @@
             this.Type_Of_Plant_Title.AutoSize = true;
             this.Type_Of_Plant_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Type_Of_Plant_Title.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.Type_Of_Plant_Title.Location = new System.Drawing.Point(24, 105);
+            this.Type_Of_Plant_Title.Location = new System.Drawing.Point(24, 131);
             this.Type_Of_Plant_Title.Name = "Type_Of_Plant_Title";
             this.Type_Of_Plant_Title.Size = new System.Drawing.Size(138, 25);
             this.Type_Of_Plant_Title.TabIndex = 7;
@@ -92,7 +96,7 @@
             this.Planting_Location_Title.AutoSize = true;
             this.Planting_Location_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Planting_Location_Title.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.Planting_Location_Title.Location = new System.Drawing.Point(24, 195);
+            this.Planting_Location_Title.Location = new System.Drawing.Point(24, 221);
             this.Planting_Location_Title.Name = "Planting_Location_Title";
             this.Planting_Location_Title.Size = new System.Drawing.Size(167, 25);
             this.Planting_Location_Title.TabIndex = 8;
@@ -105,7 +109,7 @@
             this.Planing_Date_Title.AutoSize = true;
             this.Planing_Date_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Planing_Date_Title.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.Planing_Date_Title.Location = new System.Drawing.Point(24, 389);
+            this.Planing_Date_Title.Location = new System.Drawing.Point(24, 415);
             this.Planing_Date_Title.Name = "Planing_Date_Title";
             this.Planing_Date_Title.Size = new System.Drawing.Size(129, 25);
             this.Planing_Date_Title.TabIndex = 9;
@@ -129,7 +133,7 @@
             this.Name_Plant_Text.LineIdleColor = System.Drawing.Color.DeepSkyBlue;
             this.Name_Plant_Text.LineMouseHoverColor = System.Drawing.Color.DeepSkyBlue;
             this.Name_Plant_Text.LineThickness = 2;
-            this.Name_Plant_Text.Location = new System.Drawing.Point(54, 45);
+            this.Name_Plant_Text.Location = new System.Drawing.Point(54, 71);
             this.Name_Plant_Text.Margin = new System.Windows.Forms.Padding(4);
             this.Name_Plant_Text.MaxLength = 32767;
             this.Name_Plant_Text.Name = "Name_Plant_Text";
@@ -153,7 +157,7 @@
             this.Type_Of_Plant_ComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Type_Of_Plant_ComboBox.items = new string[] {
         "- Select -"};
-            this.Type_Of_Plant_ComboBox.Location = new System.Drawing.Point(54, 134);
+            this.Type_Of_Plant_ComboBox.Location = new System.Drawing.Point(54, 160);
             this.Type_Of_Plant_ComboBox.Margin = new System.Windows.Forms.Padding(0);
             this.Type_Of_Plant_ComboBox.Name = "Type_Of_Plant_ComboBox";
             this.Type_Of_Plant_ComboBox.NomalColor = System.Drawing.Color.Transparent;
@@ -173,7 +177,7 @@
             this.Planing_Data_DateTime.ForeColor = System.Drawing.Color.Black;
             this.Planing_Data_DateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.Planing_Data_DateTime.FormatCustom = "dd-MM-yyyy";
-            this.Planing_Data_DateTime.Location = new System.Drawing.Point(54, 418);
+            this.Planing_Data_DateTime.Location = new System.Drawing.Point(54, 444);
             this.Planing_Data_DateTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Planing_Data_DateTime.Name = "Planing_Data_DateTime";
             this.Planing_Data_DateTime.Size = new System.Drawing.Size(356, 59);
@@ -185,7 +189,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.panel1.Location = new System.Drawing.Point(54, 82);
+            this.panel1.Location = new System.Drawing.Point(54, 108);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(357, 3);
             this.panel1.TabIndex = 19;
@@ -314,10 +318,11 @@
             this.Create_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Create_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Create_Button.ForeColor = System.Drawing.Color.Black;
-            this.Create_Button.Location = new System.Drawing.Point(159, 508);
+            this.Create_Button.Location = new System.Drawing.Point(485, 508);
             this.Create_Button.Name = "Create_Button";
             this.Create_Button.Size = new System.Drawing.Size(135, 44);
             this.Create_Button.TabIndex = 22;
+            this.Create_Button.TabStop = false;
             this.Create_Button.Text = "New Plant";
             this.Create_Button.UseVisualStyleBackColor = false;
             this.Create_Button.Click += new System.EventHandler(this.Create_Button_Click);
@@ -342,7 +347,7 @@
             this.Planting_Location_ComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Planting_Location_ComboBox.items = new string[] {
         "- Select -"};
-            this.Planting_Location_ComboBox.Location = new System.Drawing.Point(54, 224);
+            this.Planting_Location_ComboBox.Location = new System.Drawing.Point(54, 250);
             this.Planting_Location_ComboBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Planting_Location_ComboBox.Name = "Planting_Location_ComboBox";
             this.Planting_Location_ComboBox.NomalColor = System.Drawing.Color.Transparent;
@@ -368,7 +373,7 @@
             this.Status_Title.AutoSize = true;
             this.Status_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Status_Title.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.Status_Title.Location = new System.Drawing.Point(24, 291);
+            this.Status_Title.Location = new System.Drawing.Point(24, 317);
             this.Status_Title.Name = "Status_Title";
             this.Status_Title.Size = new System.Drawing.Size(123, 25);
             this.Status_Title.TabIndex = 23;
@@ -389,7 +394,7 @@
             this.Status_ComboBox.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Status_ComboBox.items = new string[] {
         "- Select -"};
-            this.Status_ComboBox.Location = new System.Drawing.Point(54, 322);
+            this.Status_ComboBox.Location = new System.Drawing.Point(54, 348);
             this.Status_ComboBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Status_ComboBox.Name = "Status_ComboBox";
             this.Status_ComboBox.NomalColor = System.Drawing.Color.Transparent;
@@ -398,11 +403,58 @@
             this.Status_ComboBox.Size = new System.Drawing.Size(356, 61);
             this.Status_ComboBox.TabIndex = 24;
             // 
+            // Update_Button
+            // 
+            this.Update_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Update_Button.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Button.FlatAppearance.BorderSize = 0;
+            this.Update_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Update_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Update_Button.ForeColor = System.Drawing.Color.Black;
+            this.Update_Button.Location = new System.Drawing.Point(665, 508);
+            this.Update_Button.Name = "Update_Button";
+            this.Update_Button.Size = new System.Drawing.Size(135, 44);
+            this.Update_Button.TabIndex = 25;
+            this.Update_Button.TabStop = false;
+            this.Update_Button.Text = "Update Plant";
+            this.Update_Button.UseVisualStyleBackColor = false;
+            // 
+            // Update_Plant_Elipse
+            // 
+            this.Update_Plant_Elipse.ElipseRadius = 20;
+            this.Update_Plant_Elipse.TargetControl = this.Update_Button;
+            // 
+            // Clear_Button
+            // 
+            this.Clear_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Clear_Button.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Clear_Button.FlatAppearance.BorderSize = 0;
+            this.Clear_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Clear_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Clear_Button.ForeColor = System.Drawing.Color.Black;
+            this.Clear_Button.Location = new System.Drawing.Point(848, 508);
+            this.Clear_Button.Name = "Clear_Button";
+            this.Clear_Button.Size = new System.Drawing.Size(135, 44);
+            this.Clear_Button.TabIndex = 26;
+            this.Clear_Button.TabStop = false;
+            this.Clear_Button.Text = "Clear Plant";
+            this.Clear_Button.UseVisualStyleBackColor = false;
+            this.Clear_Button.Click += new System.EventHandler(this.Clear_Button_Click);
+            // 
+            // Clear_Plant_Elipse
+            // 
+            this.Clear_Plant_Elipse.ElipseRadius = 20;
+            this.Clear_Plant_Elipse.TargetControl = this.Clear_Button;
+            // 
             // UI_Plant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.Clear_Button);
+            this.Controls.Add(this.Update_Button);
             this.Controls.Add(this.Status_ComboBox);
             this.Controls.Add(this.Status_Title);
             this.Controls.Add(this.Create_Button);
@@ -416,7 +468,7 @@
             this.Controls.Add(this.Planting_Location_Title);
             this.Controls.Add(this.Type_Of_Plant_Title);
             this.Controls.Add(this.Name_Plant_Title);
-            this.MaximumSize = new System.Drawing.Size(1254, 579);
+            this.MaximumSize = new System.Drawing.Size(1254, 580);
             this.Name = "UI_Plant";
             this.Size = new System.Drawing.Size(1254, 579);
             this.Load += new System.EventHandler(this.UI_Home_Load);
@@ -450,5 +502,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Button Update_Button;
+        private Bunifu.Framework.UI.BunifuElipse Update_Plant_Elipse;
+        private System.Windows.Forms.Button Clear_Button;
+        private Bunifu.Framework.UI.BunifuElipse Clear_Plant_Elipse;
     }
 }

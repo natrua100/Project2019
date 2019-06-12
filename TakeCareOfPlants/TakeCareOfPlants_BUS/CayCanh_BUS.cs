@@ -10,7 +10,6 @@ namespace TakeCareOfPlants_BUS
         private ViTri_SQL viTriSQL = new ViTri_SQL();
         private Loai_SQL loaiSQL = new Loai_SQL();
         private TinhTrang_SQL tinhTrangDTO = new TinhTrang_SQL();
-        private Login_SQL loginSQL = new Login_SQL();
 
         public void InsertValueCayCanh(CayCanh_DTO cayCanh_DTO, ViTri_DTO viTri_DTO)
         {

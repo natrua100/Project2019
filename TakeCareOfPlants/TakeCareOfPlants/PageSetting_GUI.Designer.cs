@@ -87,6 +87,7 @@
             this.Save_Button.selected = false;
             this.Save_Button.Size = new System.Drawing.Size(200, 60);
             this.Save_Button.TabIndex = 2;
+            this.Save_Button.TabStop = false;
             this.Save_Button.Text = "Save";
             this.Save_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Save_Button.Textcolor = System.Drawing.Color.White;
@@ -125,6 +126,7 @@
             this.Cancel_Button.selected = false;
             this.Cancel_Button.Size = new System.Drawing.Size(200, 60);
             this.Cancel_Button.TabIndex = 1;
+            this.Cancel_Button.TabStop = false;
             this.Cancel_Button.Text = "Cancel";
             this.Cancel_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Cancel_Button.Textcolor = System.Drawing.Color.White;
@@ -164,6 +166,7 @@
             this.Default_Button.selected = false;
             this.Default_Button.Size = new System.Drawing.Size(200, 60);
             this.Default_Button.TabIndex = 0;
+            this.Default_Button.TabStop = false;
             this.Default_Button.Text = "Default";
             this.Default_Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Default_Button.Textcolor = System.Drawing.Color.White;
@@ -178,6 +181,7 @@
             this.NumberPlant_Text.Name = "NumberPlant_Text";
             this.NumberPlant_Text.Size = new System.Drawing.Size(116, 28);
             this.NumberPlant_Text.TabIndex = 1;
+            this.NumberPlant_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberPlant_Text_KeyPress);
             // 
             // AmountMoney_Text
             // 
@@ -186,8 +190,9 @@
             this.AmountMoney_Text.Location = new System.Drawing.Point(345, 205);
             this.AmountMoney_Text.Name = "AmountMoney_Text";
             this.AmountMoney_Text.Size = new System.Drawing.Size(208, 28);
-            this.AmountMoney_Text.TabIndex = 2;
+            this.AmountMoney_Text.TabIndex = 3;
             this.AmountMoney_Text.TextChanged += new System.EventHandler(this.AmountMoney_Text_TextChanged);
+            this.AmountMoney_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AmountMoney_Text_KeyPress);
             // 
             // MaxPlant_Title
             // 
@@ -228,7 +233,8 @@
             this.TypeMaterial_Text.Location = new System.Drawing.Point(345, 120);
             this.TypeMaterial_Text.Name = "TypeMaterial_Text";
             this.TypeMaterial_Text.Size = new System.Drawing.Size(116, 28);
-            this.TypeMaterial_Text.TabIndex = 6;
+            this.TypeMaterial_Text.TabIndex = 2;
+            this.TypeMaterial_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TypeMaterial_Text_KeyPress);
             // 
             // MaxType_Title
             // 

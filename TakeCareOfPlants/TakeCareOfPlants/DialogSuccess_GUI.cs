@@ -25,14 +25,15 @@ namespace TakeCareOfPlants
         private void DialogSuccess_GUI_Load(object sender, EventArgs e)
         {
             dialogSuccess = this;
-            FormFadeTransition.ShowAsyc(dialogSuccess);
+            FormSuccessFadeTransition.ShowAsyc(dialogSuccess);
+            dialogSuccess.BringToFront();
         }
 
         private void FormFadeTransition_TransitionEnd(object sender, EventArgs e)
         {
             Time_Show_Button.Start();
-            Icon_Box.Visible = true;
-            Icon_Box.Enabled = true;
+            Success_Box.Visible = true;
+            Success_Box.Enabled = true;
         }
 
         private void Time_Show_Button_Tick(object sender, EventArgs e)
@@ -44,27 +45,11 @@ namespace TakeCareOfPlants
         private void OK_Button_Click(object sender, EventArgs e)
         {
             dialogSuccess = this;
-
             Function_GUI.HidePage(dialogSuccess);
-
-            if (!IsFormOpen(typeof(PageLogin_GUI))) {
-                PageLogin_GUI.Instance.Hide();
+            Function_GUI.HideFormActive(typeof(PageMain_GUI));
+            if (!PageMain_GUI.Instance.Visible) {
+                Function_GUI.ShowPage(PageMain_GUI.Instance);
             }
-            if (!IsFormOpen(typeof(PageSignUp_GUI))) {
-                PageSignUp_GUI.Instance.Hide();
-            }
-
-            Function_GUI.ShowPage(PageMain_GUI.Instance);
-        }
-
-        public bool IsFormOpen(Type FormType)
-        {
-            foreach (Form form in Application.OpenForms) {
-                if (form is PageSetting_GUI) {
-                    return true;
-                }
-            }
-            return false;
         }
 
         protected override CreateParams CreateParams
@@ -80,7 +65,6 @@ namespace TakeCareOfPlants
 
         protected override void WndProc(ref Message m)
         {
-
             switch (m.Msg) {
                 case (int)Function_GUI.ShadowBorder.WM_NCPAINT:
                     if (Function_GUI.CheckAeroEnabled()) {

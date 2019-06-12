@@ -137,10 +137,31 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2019.2.508.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amount_GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Amount_GUI.Designer.cs">
+      <DependentUpon>Amount_GUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="CircleButton.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomDialog_GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomDialog_GUI.Designer.cs">
+      <DependentUpon>CustomDialog_GUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogError_GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogError_GUI.Designer.cs">
+      <DependentUpon>DialogError_GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="DialogSuccess_GUI.cs">
       <SubType>Form</SubType>
@@ -205,6 +226,15 @@
     <Compile Include="UI_Reports.Designer.cs">
       <DependentUpon>UI_Reports.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Amount_GUI.resx">
+      <DependentUpon>Amount_GUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomDialog_GUI.resx">
+      <DependentUpon>CustomDialog_GUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogError_GUI.resx">
+      <DependentUpon>DialogError_GUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogSuccess_GUI.resx">
       <DependentUpon>DialogSuccess_GUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +250,7 @@
     <EmbeddedResource Include="PageSignUp_GUI.resx">
       <DependentUpon>PageSignUp_GUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

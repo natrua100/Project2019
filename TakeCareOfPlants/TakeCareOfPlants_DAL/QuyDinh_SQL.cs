@@ -10,18 +10,13 @@ namespace TakeCareOfPlants_DAL
     {
         private DatabaseConnection databaseConnection = new DatabaseConnection();
         private MySqlCommand command;
-        private MySqlCommand command1;
         private MySqlDataReader reader;
 
         public List<QuyDinh_DTO> GetDataQuyDinh()
         {
             List<QuyDinh_DTO> quyDinh_DTOs = new List<QuyDinh_DTO>();
             command = new MySqlCommand {
-                CommandText = "SELECT * FROM quydinh ORDER BY ID LIMIT 1",
-                Connection = databaseConnection.Connection
-            };
-            command1 = new MySqlCommand {
-                CommandText = "SELECT * FROM quydinh ORDER BY ID DESC LIMIT 1",
+                CommandText = "SELECT * FROM quydinh",
                 Connection = databaseConnection.Connection
             };
             try {
@@ -37,23 +32,11 @@ namespace TakeCareOfPlants_DAL
                 }
                 reader.Close();
                 command.Dispose();
-                reader = command1.ExecuteReader();
-                if (reader.HasRows) {
-                    while (reader.Read()) {
-                        quyDinh_DTOs.Add(new QuyDinh_DTO(
-                            reader.GetInt32("SoCayToiDa"),
-                            reader.GetInt32("SoLoaiVatTu"),
-                            reader.GetInt64("SoTienToiDa")));
-                    }
-                }
-                reader.Close();
-                command1.Dispose();
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
-                MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 command.Dispose();
-                command1.Dispose();
                 databaseConnection.CloseConnect();
+                throw ex;
             }
             return quyDinh_DTOs;
         }
@@ -65,7 +48,7 @@ namespace TakeCareOfPlants_DAL
             };
             try {
                 databaseConnection.OpenConnect();
-                command.CommandText = "INSERT INTO quydinh(SoCayToiDa, SoLoaiVatTu, SoTienToiDa) VALUE (@sctd, @slvt, @sttd)";
+                command.CommandText = "UPDATE quydinh SET SoCayToiDa = @sctd, SoLoaiVatTu = @slvt, SoTienToiDa = @sttd WHERE ID = (SELECT IDENT_CURRENT('quydinh'))";
                 command.Parameters.AddWithValue("@sctd", quyDinh_DTO.SoCayToiDa);
                 command.Parameters.AddWithValue("@slvt", quyDinh_DTO.SoLoaiVatTu);
                 command.Parameters.AddWithValue("@sttd", quyDinh_DTO.SoTienToiDa);
@@ -73,9 +56,9 @@ namespace TakeCareOfPlants_DAL
                 command.Dispose();
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
-                MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 command.Dispose();
                 databaseConnection.CloseConnect();
+                throw ex;
             }
         }
     }
