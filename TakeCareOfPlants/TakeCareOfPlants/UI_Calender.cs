@@ -110,18 +110,24 @@ namespace TakeCareOfPlants
 
         private void Create_Button_Click(object sender, EventArgs e)
         {
+            foreach (DescriptionTextCheckedListDataItem checkItems in PlantName_DropDown.CheckedItems) {
+                var a = checkItems.Text;
+                var b = checkItems.DescriptionText;
+            }
+            
+
             //Lich_DTO lichDTO = new Lich_DTO(
-                //DateTime.Now,
-                //Time_Pick.Value,
-                //Note_Text.Text
+            //DateTime.Now,
+            //Time_Pick.Value,
+            //Note_Text.Text
             //);
-                
+
 
             //List_Calender_DataGrid.Rows.Add(
-                //List_Calender_DataGrid.Rows.Count + 1,
-                //lichDTO.ThoiGian,
-                
-                //cayCanhDTO.NgayTrong.ToString("dd/MM/yyyy"));
+            //List_Calender_DataGrid.Rows.Count + 1,
+            //lichDTO.ThoiGian,
+
+            //cayCanhDTO.NgayTrong.ToString("dd/MM/yyyy"));
         }
     }
 }

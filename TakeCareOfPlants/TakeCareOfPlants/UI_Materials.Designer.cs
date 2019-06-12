@@ -84,7 +84,6 @@
             this.Coupon_DataGrid.Name = "Coupon_DataGrid";
             this.Coupon_DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.Coupon_DataGrid.RowTemplate.Height = 24;
-            this.Coupon_DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.Coupon_DataGrid.Size = new System.Drawing.Size(1216, 479);
             this.Coupon_DataGrid.TabIndex = 43;
             this.Coupon_DataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Purchase_Material_DataGrid_CellClick);

@@ -32,17 +32,25 @@ namespace TakeCareOfPlants
             Coupon_DataGrid.Controls.Add(dtp);
             dtp.Visible = false;
             dtp.Format = DateTimePickerFormat.Custom;
-            dtp.TextChanged += new EventHandler(Time_Purchase_TextChanged);
+            dtp.TextChanged += Time_Purchase_TextChanged;
+            dtp.PreviewKeyDown += Time_Purchase_PreviewKeyDown;
         }
 
         private void Purchase_Material_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (Coupon_DataGrid.Columns[e.ColumnIndex].Name == "Time_Purchase") {
+            if (e.ColumnIndex != -1 && e.RowIndex != -1 && Coupon_DataGrid.Columns[e.ColumnIndex].Name == "Time_Purchase") {
                 rectangle = Coupon_DataGrid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                if (Coupon_DataGrid.CurrentCell.Value == null) {
+                    dtp.Value = DateTime.Now;
+                } else {
+                    dtp.Text = Coupon_DataGrid.CurrentCell.Value.ToString();
+                }
                 dtp.Size = new Size(rectangle.Width, rectangle.Height);
                 dtp.Location = new Point(rectangle.X, rectangle.Y);
                 dtp.Visible = true;
                 dataGridViewCell = Coupon_DataGrid.CurrentCell;
+            } else {
+                dtp.Visible = false;
             }
         }
 
@@ -106,6 +114,14 @@ namespace TakeCareOfPlants
             if (tb.Text != "" && Coupon_DataGrid.CurrentCell.ColumnIndex == 5) {
                 tb.Text = string.Format("{0:#,#}", double.Parse(tb.Text));
                 tb.SelectionStart = tb.Text.Length;
+            }
+        }
+
+        private void Time_Purchase_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter) {
+                Coupon_DataGrid.CurrentCell.Value = dtp.Text;
+                dtp.Visible = false;
             }
         }
     }

@@ -1,6 +1,6 @@
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.exe.config
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.exe
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.pdb
+C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.exe.config
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\netstandard.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\System.AppContext.dll
