@@ -86,10 +86,10 @@
             this.Coupon_DataGrid.RowTemplate.Height = 24;
             this.Coupon_DataGrid.Size = new System.Drawing.Size(1216, 479);
             this.Coupon_DataGrid.TabIndex = 43;
-            this.Coupon_DataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Purchase_Material_DataGrid_CellClick);
-            this.Coupon_DataGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.Purchase_Material_DataGrid_ColumnWidthChanged);
-            this.Coupon_DataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Purchase_Material_DataGrid_EditingControlShowing);
-            this.Coupon_DataGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Purchase_Material_DataGrid_Scroll);
+            this.Coupon_DataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Coupon_DataGrid_CellClick);
+            this.Coupon_DataGrid.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.Coupon_DataGrid_ColumnWidthChanged);
+            this.Coupon_DataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.Coupon_DataGrid_EditingControlShowing);
+            this.Coupon_DataGrid.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Coupon_DataGrid_Scroll);
             // 
             // Material
             // 
@@ -152,6 +152,7 @@
             this.Clear_Button.TabStop = false;
             this.Clear_Button.Text = "Clear Coupon";
             this.Clear_Button.UseVisualStyleBackColor = false;
+            this.Clear_Button.Click += new System.EventHandler(this.Clear_Button_Click);
             // 
             // Update_Button
             // 

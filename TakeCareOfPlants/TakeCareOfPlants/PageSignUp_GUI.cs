@@ -56,25 +56,28 @@ namespace TakeCareOfPlants
             if (Confirm_Password_Text.Text == "") {
                 Confirm_Password_Text.LineIdleColor = Color.Red;
             }
-            if (User_Name_Text.Text != "" && Password_Text.Text != "" && Confirm_Password_Text.Text != "") {
-                if (Function_BUS.CheckPassword(Password_Text.Text)) {
-                    if (Password_Text.Text == Confirm_Password_Text.Text) {
-                        if (signUpBUS.InsertValueSignUp(User_Name_Text.Text, Password_Text.Text)) {
-                            DialogSuccess_GUI.Instance.ShowDialog();
+            try {
+                if (User_Name_Text.Text != "" && Password_Text.Text != "" && Confirm_Password_Text.Text != "") {
+                    if (Function_BUS.CheckPassword(Password_Text.Text)) {
+                        if (Password_Text.Text == Confirm_Password_Text.Text) {
+                            if (signUpBUS.InsertValueSignUp(User_Name_Text.Text, Password_Text.Text)) {
+                                DialogSuccess_GUI.Instance.ShowDialog();
+                            } else {
+                                Error_Title.Text = "Username is available";
+                                Error_Title.Visible = true;
+                            }
                         } else {
-                            Error_Title.Text = "Username is available";
-                            Error_Title.Visible = true;
+                            Confirm_Password_Text.LineIdleColor = Color.Red;
                         }
                     } else {
-                        Confirm_Password_Text.LineIdleColor = Color.Red;
+                        Password_Text.LineIdleColor = Color.Red;
+                        Error_Title.Text = "Password is invalid";
+                        Error_Title.Visible = true;
                     }
-                } else {
-                    Password_Text.LineIdleColor = Color.Red;
-                    Error_Title.Text = "Password is invalid";
-                    Error_Title.Visible = true;
                 }
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
             }
-
         }
 
         private void Confirm_Password_Text_KeyUp(object sender, KeyEventArgs e)

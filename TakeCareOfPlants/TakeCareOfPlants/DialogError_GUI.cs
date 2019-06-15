@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace TakeCareOfPlants
@@ -6,6 +7,7 @@ namespace TakeCareOfPlants
     public partial class DialogError_GUI : Form
     {
         private static DialogError_GUI dialogError;
+        private string errorText;
 
         public DialogError_GUI()
         {
@@ -22,9 +24,12 @@ namespace TakeCareOfPlants
             }
         }
 
+        public string ErrorText { get => errorText; set => errorText = value; }
+
         private void DialogError_GUI_Load(object sender, EventArgs e)
         {
             dialogError = this;
+            Error_Text.Text = errorText;
             FormErrorFadeTransition.ShowAsyc(dialogError);
             dialogError.BringToFront();
         }
@@ -34,6 +39,7 @@ namespace TakeCareOfPlants
             Time_Show_Button.Start();
             Error_Box.Visible = true;
             Error_Box.Enabled = true;
+            Error_Text.Visible = true;
         }
 
         private void Time_Show_Button_Tick(object sender, EventArgs e)
@@ -46,10 +52,6 @@ namespace TakeCareOfPlants
         {
             dialogError = this;
             Function_GUI.HidePage(dialogError);
-            Function_GUI.HideFormActive(typeof(PageMain_GUI));
-            if (!PageMain_GUI.Instance.Visible) {
-                Function_GUI.ShowPage(PageMain_GUI.Instance);
-            }
         }
 
         protected override CreateParams CreateParams

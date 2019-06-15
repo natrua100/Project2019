@@ -28,11 +28,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Name_Plant_Title = new System.Windows.Forms.Label();
             this.Type_Of_Plant_Title = new System.Windows.Forms.Label();
             this.Planting_Location_Title = new System.Windows.Forms.Label();
@@ -122,11 +122,12 @@
             this.Name_Plant_Text.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.Name_Plant_Text.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.Name_Plant_Text.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.Name_Plant_Text.BackColor = System.Drawing.Color.White;
             this.Name_Plant_Text.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.Name_Plant_Text.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Name_Plant_Text.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name_Plant_Text.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Name_Plant_Text.HintForeColor = System.Drawing.Color.Empty;
+            this.Name_Plant_Text.HintForeColor = System.Drawing.Color.Black;
             this.Name_Plant_Text.HintText = "Name";
             this.Name_Plant_Text.isPassword = false;
             this.Name_Plant_Text.LineFocusedColor = System.Drawing.Color.DeepSkyBlue;
@@ -139,8 +140,8 @@
             this.Name_Plant_Text.Name = "Name_Plant_Text";
             this.Name_Plant_Text.Size = new System.Drawing.Size(356, 40);
             this.Name_Plant_Text.TabIndex = 10;
-            this.Name_Plant_Text.TabStop = false;
             this.Name_Plant_Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Name_Plant_Text.OnValueChanged += new System.EventHandler(this.Name_Plant_Text_OnValueChanged);
             // 
             // Type_Of_Plant_ComboBox
             // 
@@ -164,7 +165,9 @@
             this.Type_Of_Plant_ComboBox.onHoverColor = System.Drawing.Color.LightSkyBlue;
             this.Type_Of_Plant_ComboBox.selectedIndex = 0;
             this.Type_Of_Plant_ComboBox.Size = new System.Drawing.Size(356, 58);
-            this.Type_Of_Plant_ComboBox.TabIndex = 15;
+            this.Type_Of_Plant_ComboBox.TabIndex = 1;
+            this.Type_Of_Plant_ComboBox.TabStop = false;
+            this.Type_Of_Plant_ComboBox.onItemSelected += new System.EventHandler(this.Type_Of_Plant_ComboBox_onItemSelected);
             // 
             // Planing_Data_DateTime
             // 
@@ -181,7 +184,8 @@
             this.Planing_Data_DateTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Planing_Data_DateTime.Name = "Planing_Data_DateTime";
             this.Planing_Data_DateTime.Size = new System.Drawing.Size(356, 59);
-            this.Planing_Data_DateTime.TabIndex = 10;
+            this.Planing_Data_DateTime.TabIndex = 4;
+            this.Planing_Data_DateTime.TabStop = false;
             this.Planing_Data_DateTime.Value = new System.DateTime(2019, 5, 21, 16, 49, 1, 766);
             // 
             // panel1
@@ -203,8 +207,8 @@
             // 
             this.List_Plant_DataGrid.AllowUserToAddRows = false;
             this.List_Plant_DataGrid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.List_Plant_DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.List_Plant_DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle26;
             this.List_Plant_DataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.List_Plant_DataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -212,14 +216,14 @@
             this.List_Plant_DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.List_Plant_DataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.List_Plant_DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.List_Plant_DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.List_Plant_DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.List_Plant_DataGrid.ColumnHeadersHeight = 30;
             this.List_Plant_DataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -228,14 +232,14 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.List_Plant_DataGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.List_Plant_DataGrid.DefaultCellStyle = dataGridViewCellStyle29;
             this.List_Plant_DataGrid.DoubleBuffered = true;
             this.List_Plant_DataGrid.EnableHeadersVisualStyles = false;
             this.List_Plant_DataGrid.HeaderBgColor = System.Drawing.Color.DeepSkyBlue;
@@ -245,14 +249,14 @@
             this.List_Plant_DataGrid.Name = "List_Plant_DataGrid";
             this.List_Plant_DataGrid.ReadOnly = true;
             this.List_Plant_DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Turquoise;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.List_Plant_DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Turquoise;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.List_Plant_DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.List_Plant_DataGrid.RowHeadersVisible = false;
             this.List_Plant_DataGrid.RowTemplate.DividerHeight = 1;
             this.List_Plant_DataGrid.RowTemplate.Height = 30;
@@ -266,8 +270,8 @@
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle28;
             this.Column1.FillWeight = 30F;
             this.Column1.Frozen = true;
             this.Column1.HeaderText = "STT";
@@ -314,6 +318,7 @@
             this.Create_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Create_Button.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Create_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Create_Button.FlatAppearance.BorderSize = 0;
             this.Create_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Create_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -354,7 +359,9 @@
             this.Planting_Location_ComboBox.onHoverColor = System.Drawing.Color.LightSkyBlue;
             this.Planting_Location_ComboBox.selectedIndex = 0;
             this.Planting_Location_ComboBox.Size = new System.Drawing.Size(356, 61);
-            this.Planting_Location_ComboBox.TabIndex = 15;
+            this.Planting_Location_ComboBox.TabIndex = 2;
+            this.Planting_Location_ComboBox.TabStop = false;
+            this.Planting_Location_ComboBox.onItemSelected += new System.EventHandler(this.Planting_Location_ComboBox_onItemSelected);
             // 
             // List_Plant_Panel
             // 
@@ -401,13 +408,16 @@
             this.Status_ComboBox.onHoverColor = System.Drawing.Color.LightSkyBlue;
             this.Status_ComboBox.selectedIndex = 0;
             this.Status_ComboBox.Size = new System.Drawing.Size(356, 61);
-            this.Status_ComboBox.TabIndex = 24;
+            this.Status_ComboBox.TabIndex = 3;
+            this.Status_ComboBox.TabStop = false;
+            this.Status_ComboBox.onItemSelected += new System.EventHandler(this.Status_ComboBox_onItemSelected);
             // 
             // Update_Button
             // 
             this.Update_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Update_Button.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Update_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Update_Button.FlatAppearance.BorderSize = 0;
             this.Update_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Update_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -430,6 +440,7 @@
             this.Clear_Button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Clear_Button.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Clear_Button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Clear_Button.FlatAppearance.BorderSize = 0;
             this.Clear_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Clear_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));

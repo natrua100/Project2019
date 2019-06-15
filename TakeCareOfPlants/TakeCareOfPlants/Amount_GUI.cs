@@ -31,7 +31,7 @@ namespace TakeCareOfPlants
         private void Amount_GUI_Load(object sender, EventArgs e)
         {
             Amount_Title.Text = "Amount " + title + ":";
-            Amount_Text.Text = "";
+            Amount_Text.Text = amount.ToString();
         }
 
         private void NumberPlant_Text_KeyPress(object sender, KeyPressEventArgs e)

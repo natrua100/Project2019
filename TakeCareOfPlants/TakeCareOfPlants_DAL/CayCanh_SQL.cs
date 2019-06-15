@@ -26,7 +26,7 @@ namespace TakeCareOfPlants_DAL
                 command.Parameters.AddWithValue("@nt", cayCanh_DTO.NgayTrong);
                 command.ExecuteNonQuery();
                 command.Dispose();
-                command.CommandText = "INSERT INTO caycanh_vitri(IDCayCanh, IDViTri) VALUE (LAST_INSERT_ID(), @idvt)";
+                command.CommandText = "INSERT INTO caycanh_vitri(IDCayCanh, IDViTri) VALUE (SELECT MAX(ID) FROM caycanh, @idvt)";
                 command.Parameters.AddWithValue("@idvt", viTri_DTO.Id);
                 command.ExecuteNonQuery();
                 command.Dispose();

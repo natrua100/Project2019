@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TakeCareOfPlants_BUS;
 
 namespace TakeCareOfPlants
 {
@@ -21,6 +22,11 @@ namespace TakeCareOfPlants
 
         public PageMain_GUI()
         {
+            try {
+                QuyDinh_BUS.QuyDinh_DTOs = QuyDinh_BUS.GetValueQuyDinh();
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
+            }
             InitializeComponent();
         }
 

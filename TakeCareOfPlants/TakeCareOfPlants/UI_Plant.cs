@@ -27,16 +27,21 @@ namespace TakeCareOfPlants
 
         public UI_Plant()
         {
-            listViTri = cayCanhBUS.GetValueViTri();
-            listLoai = cayCanhBUS.GetValueLoai();
-            listTinhTrang = cayCanhBUS.GetValueTinhTrang();
+            try {
+                listViTri = cayCanhBUS.GetValueViTri();
+                listLoai = cayCanhBUS.GetValueLoai();
+                listTinhTrang = cayCanhBUS.GetValueTinhTrang();
+                cayCanhBUS.GetTotalAvailableLocation();
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
+            }
             InitializeComponent();
         }
 
         private void UI_Home_Load(object sender, EventArgs e)
         {
-            Update_Button.Enabled = false;
-            Update_Button.BackColor = Color.LightSlateGray;
+            Name_Plant_Text.Focus();
+            Function_GUI.ChangeColorButton(Create_Button, Update_Button);
 
             foreach (ViTri_DTO viTriDTO in listViTri) {
                 Planting_Location_ComboBox.AddItem(viTriDTO.TenViTri);
@@ -53,11 +58,30 @@ namespace TakeCareOfPlants
 
         private void Create_Button_Click(object sender, EventArgs e)
         {
+            bool createSuccess = true;
             Loai_DTO loaiDTO = listLoai.Find(r => r.Loai == Type_Of_Plant_ComboBox.selectedValue);
-
             ViTri_DTO viTriDTO = listViTri.Find(v => v.TenViTri == Planting_Location_ComboBox.selectedValue);
-
             TinhTrang_DTO tinhTrangDTO = listTinhTrang.Find(t => t.TinhTrang == Status_ComboBox.selectedValue);
+
+            if (Name_Plant_Text.Text == "") {
+                Name_Plant_Text.HintForeColor = Color.Red;
+                createSuccess = false;
+            }
+
+            if (loaiDTO == null) {
+                Type_Of_Plant_ComboBox.ForeColor = Color.Red;
+                createSuccess = false;
+            }
+
+            if (viTriDTO == null) {
+                Planting_Location_ComboBox.ForeColor = Color.Red;
+                createSuccess = false;
+            }
+
+            if (tinhTrangDTO == null) {
+                Status_ComboBox.ForeColor = Color.Red;
+                createSuccess = false;
+            }
 
             CayCanh_DTO cayCanhDTO = new CayCanh_DTO(
                 Name_Plant_Text.Text,
@@ -65,15 +89,21 @@ namespace TakeCareOfPlants
                 tinhTrangDTO,
                 Planing_Data_DateTime.Value);
 
-            cayCanhBUS.InsertValueCayCanh(cayCanhDTO, viTriDTO);
+            try {
+                if (createSuccess) {
+                    cayCanhBUS.InsertValueCayCanh(cayCanhDTO, viTriDTO);
 
-            List_Plant_DataGrid.Rows.Add(
-                List_Plant_DataGrid.Rows.Count + 1,
-                cayCanhDTO.TenCay,
-                cayCanhDTO.Loai_DTO.Loai,
-                viTriDTO.TenViTri,
-                cayCanhDTO.TinhTrang_DTO.TinhTrang,
-                cayCanhDTO.NgayTrong.ToString("dd/MM/yyyy"));
+                    List_Plant_DataGrid.Rows.Add(
+                        List_Plant_DataGrid.Rows.Count + 1,
+                        cayCanhDTO.TenCay,
+                        cayCanhDTO.Loai_DTO.Loai,
+                        viTriDTO.TenViTri,
+                        cayCanhDTO.TinhTrang_DTO.TinhTrang,
+                        cayCanhDTO.NgayTrong.ToString("dd/MM/yyyy"));
+                }
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
+            }
         }
 
         private void List_Plant_DataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -107,24 +137,42 @@ namespace TakeCareOfPlants
                 Planing_Data_DateTime.Value = DateTime.ParseExact(time, "dd/MM/yyyy", null);
             }
 
-            if (Create_Button.Enabled) {
-                Create_Button.Enabled = false;
-                Update_Button.Enabled = true;
-            }
+            Function_GUI.ChangeColorButton(Update_Button, Create_Button);
         }
 
         private void Clear_Button_Click(object sender, EventArgs e)
         {
-            Create_Button.Enabled = true;
-            Create_Button.BackColor = Color.RoyalBlue;
-            Update_Button.Enabled = false;
-            Update_Button.BackColor = Color.LightSlateGray;
+            Function_GUI.ChangeColorButton(Create_Button, Update_Button);
 
             Name_Plant_Text.Text = "";
+            Name_Plant_Text.Focus();
             Type_Of_Plant_ComboBox.selectedIndex = 0;
             Planting_Location_ComboBox.selectedIndex = 0;
             Status_ComboBox.selectedIndex = 0;
             Planing_Data_DateTime.Value = DateTime.Now;
+        }
+
+        private void Name_Plant_Text_OnValueChanged(object sender, EventArgs e)
+        {
+            Name_Plant_Text.HintForeColor = Color.Black;
+            if (Name_Plant_Text.Text == "") {
+                Name_Plant_Text.Focus();
+            }
+        }
+
+        private void Type_Of_Plant_ComboBox_onItemSelected(object sender, EventArgs e)
+        {
+            Type_Of_Plant_ComboBox.ForeColor = Color.Black;
+        }
+
+        private void Planting_Location_ComboBox_onItemSelected(object sender, EventArgs e)
+        {
+            Planting_Location_ComboBox.ForeColor = Color.Black;
+        }
+
+        private void Status_ComboBox_onItemSelected(object sender, EventArgs e)
+        {
+            Status_ComboBox.ForeColor = Color.Black;
         }
     }
 }

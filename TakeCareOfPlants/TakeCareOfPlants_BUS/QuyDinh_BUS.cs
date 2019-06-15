@@ -6,22 +6,20 @@ namespace TakeCareOfPlants_BUS
 {
     public static class QuyDinh_BUS
     {
-        private static QuyDinh_DTO quyDinhDTO;
+        private static List<QuyDinh_DTO> quyDinh_DTOs;
         private static QuyDinh_SQL quyDinhSQL = new QuyDinh_SQL();
 
-        public static QuyDinh_DTO QuyDinhDTO { get => quyDinhDTO; set => quyDinhDTO = value; }
+        public static List<QuyDinh_DTO> QuyDinh_DTOs { get => quyDinh_DTOs; set => quyDinh_DTOs = value; }
 
         public static List<QuyDinh_DTO> GetValueQuyDinh()
         {
-            List<QuyDinh_DTO> quyDinh_DTOs = quyDinhSQL.GetDataQuyDinh();
-            quyDinhDTO = quyDinh_DTOs[1];
-            return quyDinh_DTOs;
+            return quyDinhSQL.GetDataQuyDinh();
         }
 
-        public static void InsertValueQuyDinh(QuyDinh_DTO quyDinh_DTO)
+        public static void UpdateValueQuyDinh(QuyDinh_DTO quyDinh_DTO)
         {
-            quyDinhDTO = quyDinh_DTO;
-            quyDinhSQL.InsertDataQuyDinh(quyDinh_DTO);
+            quyDinh_DTOs[1] = quyDinh_DTO;
+            quyDinhSQL.UpdateDataQuyDinh(quyDinh_DTO);
         }
     }
 }

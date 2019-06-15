@@ -28,9 +28,9 @@
         private void InitializeComponent()
         {
             this.Amount_Title = new System.Windows.Forms.Label();
-            this.Amount_Text = new Bunifu.Framework.BunifuCustomTextbox();
             this.OK_Button = new System.Windows.Forms.Button();
             this.Cancel_Button = new System.Windows.Forms.Button();
+            this.Amount_Text = new Bunifu.Framework.BunifuCustomTextbox();
             this.SuspendLayout();
             // 
             // Amount_Title
@@ -44,19 +44,6 @@
             this.Amount_Title.Size = new System.Drawing.Size(86, 25);
             this.Amount_Title.TabIndex = 23;
             this.Amount_Title.Text = "Amount:";
-            // 
-            // Amount_Text
-            // 
-            this.Amount_Text.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Amount_Text.BackColor = System.Drawing.Color.White;
-            this.Amount_Text.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.Amount_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.Amount_Text.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Amount_Text.Location = new System.Drawing.Point(42, 37);
-            this.Amount_Text.Name = "Amount_Text";
-            this.Amount_Text.Size = new System.Drawing.Size(356, 28);
-            this.Amount_Text.TabIndex = 22;
-            this.Amount_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberPlant_Text_KeyPress);
             // 
             // OK_Button
             // 
@@ -86,6 +73,19 @@
             this.Cancel_Button.Text = "Cancel";
             this.Cancel_Button.UseVisualStyleBackColor = true;
             // 
+            // Amount_Text
+            // 
+            this.Amount_Text.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Amount_Text.BackColor = System.Drawing.Color.White;
+            this.Amount_Text.BorderColor = System.Drawing.Color.LightSkyBlue;
+            this.Amount_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.Amount_Text.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Amount_Text.Location = new System.Drawing.Point(42, 37);
+            this.Amount_Text.Name = "Amount_Text";
+            this.Amount_Text.Size = new System.Drawing.Size(356, 28);
+            this.Amount_Text.TabIndex = 0;
+            this.Amount_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberPlant_Text_KeyPress);
+            // 
             // Amount_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -109,8 +109,8 @@
         #endregion
 
         private System.Windows.Forms.Label Amount_Title;
-        private Bunifu.Framework.BunifuCustomTextbox Amount_Text;
         private System.Windows.Forms.Button OK_Button;
         private System.Windows.Forms.Button Cancel_Button;
+        private Bunifu.Framework.BunifuCustomTextbox Amount_Text;
     }
 }

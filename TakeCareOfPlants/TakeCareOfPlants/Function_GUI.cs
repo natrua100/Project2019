@@ -153,5 +153,19 @@ namespace TakeCareOfPlants
                 token.BorderGradientStyle = GradientStyles.Solid;
             }
         }
+
+        public static void ShowErrorDialog(string ex)
+        {
+            DialogError_GUI.Instance.ErrorText = ex;
+            DialogError_GUI.Instance.ShowDialog();
+        }
+
+        public static void ChangeColorButton(Button button1, Button button2)
+        {
+            button1.Enabled = true;
+            button1.BackColor = Color.RoyalBlue;
+            button2.Enabled = false;
+            button2.BackColor = Color.LightSlateGray;
+        }
     }
 }

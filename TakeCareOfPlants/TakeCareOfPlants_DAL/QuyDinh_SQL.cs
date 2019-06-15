@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using TakeCareOfPlants_DTO;
 
 namespace TakeCareOfPlants_DAL
@@ -41,14 +40,18 @@ namespace TakeCareOfPlants_DAL
             return quyDinh_DTOs;
         }
 
-        public void InsertDataQuyDinh(QuyDinh_DTO quyDinh_DTO)
+        public void UpdateDataQuyDinh(QuyDinh_DTO quyDinh_DTO)
         {
-            command = new MySqlCommand {
-                Connection = databaseConnection.Connection
-            };
             try {
                 databaseConnection.OpenConnect();
-                command.CommandText = "UPDATE quydinh SET SoCayToiDa = @sctd, SoLoaiVatTu = @slvt, SoTienToiDa = @sttd WHERE ID = (SELECT IDENT_CURRENT('quydinh'))";
+                command = new MySqlCommand {
+                    Connection = databaseConnection.Connection,
+                    CommandText = "UPDATE quydinh AS h " +
+                    "JOIN (SELECT MAX(ID) AS max_id FROM quydinh) AS m " +
+                    "ON m.max_id = h.ID " +
+                    "SET h.SoCayToiDa = @sctd, h.SoLoaiVatTu = @slvt, h.SoTienToiDa = @sttd;"
+                };
+
                 command.Parameters.AddWithValue("@sctd", quyDinh_DTO.SoCayToiDa);
                 command.Parameters.AddWithValue("@slvt", quyDinh_DTO.SoLoaiVatTu);
                 command.Parameters.AddWithValue("@sttd", quyDinh_DTO.SoTienToiDa);

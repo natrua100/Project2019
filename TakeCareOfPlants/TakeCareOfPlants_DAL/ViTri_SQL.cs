@@ -31,11 +31,40 @@ namespace TakeCareOfPlants_DAL
                 command.Dispose();
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
-                MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 command.Dispose();
                 databaseConnection.CloseConnect();
+                throw ex;
             }
             return viTri_DTOs;
+        }
+
+        public List<Tuple<string, int>> GetAvailableLocation()
+        {
+            List<Tuple<string, int>> tuples = new List<Tuple<string, int>>();
+            command = new MySqlCommand {
+                CommandText = "SELECT a.ID, COUNT(*) AS 'COUNT(ID)' FROM vitri AS a " +
+                "INNER JOIN caycanh_vitri AS b " +
+                "ON a.ID = b.IDViTri " +
+                "GROUP BY a.ID;",
+                Connection = databaseConnection.Connection
+            };
+            try {
+                databaseConnection.OpenConnect();
+                reader = command.ExecuteReader();
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        tuples.Add(new Tuple<string, int>(reader.GetString("ID"), reader.GetInt32("COUNT(ID)")));
+                    }
+                }
+                reader.Close();
+                command.Dispose();
+                databaseConnection.CloseConnect();
+            } catch (Exception ex) {
+                command.Dispose();
+                databaseConnection.CloseConnect();
+                throw ex;
+            }
+            return tuples;
         }
     }
 }

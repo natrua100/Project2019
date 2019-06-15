@@ -39,9 +39,9 @@ namespace TakeCareOfPlants_DAL
                 command.Dispose();
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
-                MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 command.Dispose();
                 databaseConnection.CloseConnect();
+                throw ex;
             }
             return false;
         }

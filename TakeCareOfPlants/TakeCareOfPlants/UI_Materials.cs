@@ -8,9 +8,6 @@ namespace TakeCareOfPlants
     {
         private static UI_Materials uiMaterials;
         private DateTimePicker dtp = new DateTimePicker();
-        private Rectangle rectangle;
-        private TextBox tb;
-        private DataGridViewCell dataGridViewCell;
 
         public static UI_Materials Instance
         {
@@ -21,6 +18,10 @@ namespace TakeCareOfPlants
                 return uiMaterials;
             }
         }
+
+        private Rectangle Rectangle { get; set; }
+        private TextBox Tb { get; set; }
+        private DataGridViewCell DataGridViewCell { get; set; }
 
         public UI_Materials()
         {
@@ -36,42 +37,35 @@ namespace TakeCareOfPlants
             dtp.PreviewKeyDown += Time_Purchase_PreviewKeyDown;
         }
 
-        private void Purchase_Material_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Coupon_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != -1 && e.RowIndex != -1 && Coupon_DataGrid.Columns[e.ColumnIndex].Name == "Time_Purchase") {
-                rectangle = Coupon_DataGrid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                Rectangle = Coupon_DataGrid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
                 if (Coupon_DataGrid.CurrentCell.Value == null) {
                     dtp.Value = DateTime.Now;
                 } else {
                     dtp.Text = Coupon_DataGrid.CurrentCell.Value.ToString();
                 }
-                dtp.Size = new Size(rectangle.Width, rectangle.Height);
-                dtp.Location = new Point(rectangle.X, rectangle.Y);
+                dtp.Size = new Size(Rectangle.Width, Rectangle.Height);
+                dtp.Location = new Point(Rectangle.X, Rectangle.Y);
                 dtp.Visible = true;
-                dataGridViewCell = Coupon_DataGrid.CurrentCell;
+                DataGridViewCell = Coupon_DataGrid.CurrentCell;
             } else {
                 dtp.Visible = false;
             }
         }
 
-        private void Time_Purchase_TextChanged(object sender, EventArgs e)
-        {
-            if (Coupon_DataGrid.CurrentCell == dataGridViewCell) {
-                Coupon_DataGrid.CurrentCell.Value = dtp.Text;
-            }
-        }
-
-        private void Purchase_Material_DataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        private void Coupon_DataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
         {
             dtp.Visible = false;
         }
 
-        private void Purchase_Material_DataGrid_Scroll(object sender, ScrollEventArgs e)
+        private void Coupon_DataGrid_Scroll(object sender, ScrollEventArgs e)
         {
             dtp.Visible = false;
         }
 
-        private void Purchase_Material_DataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        private void Coupon_DataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             switch (Coupon_DataGrid.CurrentCell.ColumnIndex) {
                 case 0:
@@ -88,8 +82,8 @@ namespace TakeCareOfPlants
                     e.Control.KeyPress -= Amount_KeyPress;
                     e.Control.KeyPress -= Material_KeyPress;
                     e.Control.KeyPress += Money_KeyPress;
-                    tb = (TextBox)e.Control;
-                    tb.TextChanged += new EventHandler(Money_TextChanged);
+                    Tb = (TextBox)e.Control;
+                    Tb.TextChanged += new EventHandler(Money_TextChanged);
                     break;
             }
         }
@@ -111,9 +105,16 @@ namespace TakeCareOfPlants
 
         private void Money_TextChanged(object sender, EventArgs e)
         {
-            if (tb.Text != "" && Coupon_DataGrid.CurrentCell.ColumnIndex == 5) {
-                tb.Text = string.Format("{0:#,#}", double.Parse(tb.Text));
-                tb.SelectionStart = tb.Text.Length;
+            if (Tb.Text != "" && Coupon_DataGrid.CurrentCell.ColumnIndex == 5) {
+                Tb.Text = string.Format("{0:#,#}", double.Parse(Tb.Text));
+                Tb.SelectionStart = Tb.Text.Length;
+            }
+        }
+
+        private void Time_Purchase_TextChanged(object sender, EventArgs e)
+        {
+            if (Coupon_DataGrid.CurrentCell == DataGridViewCell) {
+                Coupon_DataGrid.CurrentCell.Value = dtp.Text;
             }
         }
 
@@ -123,6 +124,12 @@ namespace TakeCareOfPlants
                 Coupon_DataGrid.CurrentCell.Value = dtp.Text;
                 dtp.Visible = false;
             }
+        }
+
+        private void Clear_Button_Click(object sender, EventArgs e)
+        {
+            Coupon_DataGrid.Rows.Clear();
+            Coupon_DataGrid.Refresh();
         }
     }
 }

@@ -103,14 +103,17 @@ namespace TakeCareOfPlants
             if (Password_Text.Text == "") {
                 Password_Text.LineIdleColor = Color.Red;
             }
-            if (User_Name_Text.Text != "" && Password_Text.Text != "") {
-                if (loginBUS.LogInSuccess(User_Name_Text.Text, Password_Text.Text)) {
-
-                    DialogSuccess_GUI.Instance.ShowDialog();
-                } else {
-                    Error_Text.Text = "The username or password is incorrect";
-                    Error_Text.Visible = true;
+            try {
+                if (User_Name_Text.Text != "" && Password_Text.Text != "") {
+                    if (loginBUS.LogInSuccess(User_Name_Text.Text, Password_Text.Text)) {
+                        DialogSuccess_GUI.Instance.ShowDialog();
+                    } else {
+                        Error_Text.Text = "The username or password is incorrect";
+                        Error_Text.Visible = true;
+                    }
                 }
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
             }
         }
 
