@@ -36,7 +36,6 @@
             this.Material_Title = new System.Windows.Forms.Label();
             this.Time_Title = new System.Windows.Forms.Label();
             this.Note_Title = new System.Windows.Forms.Label();
-            this.Note_Text = new Bunifu.Framework.BunifuCustomTextbox();
             this.List_Calender_DataGrid = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +56,8 @@
             this.Material_DropDown = new Telerik.WinControls.UI.RadCheckedDropDownList();
             this.Time_Pick = new Telerik.WinControls.UI.RadTimePicker();
             this.object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb = new Telerik.WinControls.UI.RadDropDownListRootElement();
+            this.object_e72eab59_cf89_4488_90ad_be547ab79041 = new Telerik.WinControls.RootRadElement();
+            this.Note_Text = new Bunifu.Framework.BunifuCustomTextbox();
             ((System.ComponentModel.ISupportInitialize)(this.List_Calender_DataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlantName_DropDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Material_DropDown)).BeginInit();
@@ -101,20 +102,6 @@
             this.Note_Title.Size = new System.Drawing.Size(59, 25);
             this.Note_Title.TabIndex = 28;
             this.Note_Title.Text = "Note:";
-            // 
-            // Note_Text
-            // 
-            this.Note_Text.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Note_Text.BackColor = System.Drawing.Color.White;
-            this.Note_Text.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(189)))), ((int)(((byte)(232)))));
-            this.Note_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.Note_Text.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Note_Text.Location = new System.Drawing.Point(60, 240);
-            this.Note_Text.Multiline = true;
-            this.Note_Text.Name = "Note_Text";
-            this.Note_Text.Size = new System.Drawing.Size(356, 212);
-            this.Note_Text.TabIndex = 2;
             // 
             // List_Calender_DataGrid
             // 
@@ -400,6 +387,8 @@
             this.Time_Pick.TabStop = false;
             this.Time_Pick.TimeTables = Telerik.WinControls.UI.TimeTables.HoursAndMinutesInOneTable;
             this.Time_Pick.Value = new System.DateTime(2019, 6, 14, 4, 23, 51, 350);
+            ((Telerik.WinControls.UI.RadTimePickerElement)(this.Time_Pick.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.Time_Pick.GetChildAt(0).GetChildAt(1))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(189)))), ((int)(((byte)(232)))));
             // 
             // object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb
             // 
@@ -407,6 +396,26 @@
             this.object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb.Name = "object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb";
             this.object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb.StretchHorizontally = true;
             this.object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb.StretchVertically = true;
+            // 
+            // object_e72eab59_cf89_4488_90ad_be547ab79041
+            // 
+            this.object_e72eab59_cf89_4488_90ad_be547ab79041.Name = "object_e72eab59_cf89_4488_90ad_be547ab79041";
+            this.object_e72eab59_cf89_4488_90ad_be547ab79041.StretchHorizontally = true;
+            this.object_e72eab59_cf89_4488_90ad_be547ab79041.StretchVertically = true;
+            // 
+            // Note_Text
+            // 
+            this.Note_Text.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Note_Text.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Note_Text.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(189)))), ((int)(((byte)(232)))));
+            this.Note_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.Note_Text.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Note_Text.Location = new System.Drawing.Point(60, 240);
+            this.Note_Text.Multiline = true;
+            this.Note_Text.Name = "Note_Text";
+            this.Note_Text.Size = new System.Drawing.Size(356, 212);
+            this.Note_Text.TabIndex = 2;
             // 
             // UI_Calender
             // 
@@ -441,7 +450,6 @@
         private System.Windows.Forms.Label Material_Title;
         private System.Windows.Forms.Label Time_Title;
         private System.Windows.Forms.Label Note_Title;
-        private Bunifu.Framework.BunifuCustomTextbox Note_Text;
         private Bunifu.Framework.UI.BunifuCustomDataGrid List_Calender_DataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -462,5 +470,7 @@
         private Telerik.WinControls.UI.RadCheckedDropDownList Material_DropDown;
         private Telerik.WinControls.UI.RadTimePicker Time_Pick;
         private Telerik.WinControls.UI.RadDropDownListRootElement object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb;
+        private Telerik.WinControls.RootRadElement object_e72eab59_cf89_4488_90ad_be547ab79041;
+        private Bunifu.Framework.BunifuCustomTextbox Note_Text;
     }
 }

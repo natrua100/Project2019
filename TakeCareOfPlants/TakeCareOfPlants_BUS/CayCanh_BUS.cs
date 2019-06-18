@@ -11,13 +11,12 @@ namespace TakeCareOfPlants_BUS
         private ViTri_SQL viTriSQL = new ViTri_SQL();
         private Loai_SQL loaiSQL = new Loai_SQL();
         private TinhTrang_SQL tinhTrangDTO = new TinhTrang_SQL();
-        private List<Tuple<string, int>> totalLocation = new List<Tuple<string, int>>();
 
         public void InsertValueCayCanh(CayCanh_DTO cayCanh_DTO, ViTri_DTO viTri_DTO)
         {
-            totalLocation.ForEach(t => {
-                if (t.Item1 == viTri_DTO.Id) {
-                    if ((t.Item2 + 1) <= QuyDinh_BUS.QuyDinh_DTOs[2].SoCayToiDa) {
+            viTriSQL.GetAvailableLocation().ForEach(t => {
+                if (t.Id == viTri_DTO.Id) {
+                    if ((t.SoCayToiDa + 1) <= viTri_DTO.SoCayToiDa) {
                         cayCanhSQL.InsertDataCayCanh(cayCanh_DTO, viTri_DTO);
                     } else {
                         throw new Exception("The Location Is Full");
@@ -39,11 +38,6 @@ namespace TakeCareOfPlants_BUS
         public List<TinhTrang_DTO> GetValueTinhTrang()
         {
             return tinhTrangDTO.GetDataTinhTrang();
-        }
-
-        public void GetTotalAvailableLocation()
-        {
-            totalLocation = viTriSQL.GetAvailableLocation();
         }
     }
 }

@@ -56,17 +56,7 @@ namespace TakeCareOfPlants
                 });
             }
         }
-
-        private void Clear_Button_Click(object sender, EventArgs e)
-        {
-            Function_GUI.ChangeColorButton(Create_Button, Update_Button);
-
-            Time_Pick.Value = DateTime.Now;
-            Material_DropDown.Text = "";
-            Note_Text.Text = "";
-            PlantName_DropDown.Text = "";
-        }
-
+        
         private void Material_DropDown_ItemCheckedChanged(object sender, RadCheckedListDataItemEventArgs e)
         {
             if (e.Item.Checked) {
@@ -152,6 +142,16 @@ namespace TakeCareOfPlants
             } catch (Exception ex) {
                 Function_GUI.ShowErrorDialog(ex.Message);
             }
+        }
+
+        private void Clear_Button_Click(object sender, EventArgs e)
+        {
+            Function_GUI.ChangeColorButton(Create_Button, Update_Button);
+
+            Time_Pick.Value = DateTime.Now;
+            Material_DropDown.Text = "";
+            Note_Text.Text = "";
+            PlantName_DropDown.Text = "";
         }
     }
 }

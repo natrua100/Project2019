@@ -33,18 +33,21 @@ namespace TakeCareOfPlants
             Coupon_DataGrid.Controls.Add(dtp);
             dtp.Visible = false;
             dtp.Format = DateTimePickerFormat.Custom;
+            dtp.CustomFormat = "dd-MM-yyyy";
             dtp.TextChanged += Time_Purchase_TextChanged;
             dtp.PreviewKeyDown += Time_Purchase_PreviewKeyDown;
         }
 
         private void Coupon_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             if (e.ColumnIndex != -1 && e.RowIndex != -1 && Coupon_DataGrid.Columns[e.ColumnIndex].Name == "Time_Purchase") {
                 Rectangle = Coupon_DataGrid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
                 if (Coupon_DataGrid.CurrentCell.Value == null) {
                     dtp.Value = DateTime.Now;
+                    Coupon_DataGrid.CurrentCell.Value = dtp.Value.ToString("dd-MM-yyyy");
                 } else {
-                    dtp.Text = Coupon_DataGrid.CurrentCell.Value.ToString();
+                    dtp.Value = DateTime.ParseExact(Coupon_DataGrid.CurrentCell.Value.ToString(), "dd-MM-yyyy", null);
                 }
                 dtp.Size = new Size(Rectangle.Width, Rectangle.Height);
                 dtp.Location = new Point(Rectangle.X, Rectangle.Y);
@@ -123,6 +126,16 @@ namespace TakeCareOfPlants
             if (e.KeyData == Keys.Enter) {
                 Coupon_DataGrid.CurrentCell.Value = dtp.Text;
                 dtp.Visible = false;
+            }
+        }
+
+        private void Create_Button_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in Coupon_DataGrid.Rows) {
+                foreach (DataGridViewCell cell in row.Cells) {
+                    string value = cell.Value.ToString();
+
+                }
             }
         }
 

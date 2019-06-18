@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Menu_Button = new System.Windows.Forms.Panel();
             this.Save_Button = new Bunifu.Framework.UI.BunifuFlatButton();
             this.Cancel_Button = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -37,7 +38,11 @@
             this.MaxMoney_Title = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TypeMaterial_Text = new Bunifu.Framework.BunifuCustomTextbox();
             this.MaxType_Title = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.NumberPlant_DropDown = new Telerik.WinControls.UI.RadDropDownList();
+            this.Error_Provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.Menu_Button.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberPlant_DropDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Button
@@ -175,16 +180,23 @@
             // 
             // NumberPlant_Text
             // 
+            this.NumberPlant_Text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NumberPlant_Text.BackColor = System.Drawing.Color.White;
             this.NumberPlant_Text.BorderColor = System.Drawing.Color.Black;
             this.NumberPlant_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.NumberPlant_Text.Location = new System.Drawing.Point(345, 36);
+            this.NumberPlant_Text.Location = new System.Drawing.Point(506, 33);
             this.NumberPlant_Text.Name = "NumberPlant_Text";
-            this.NumberPlant_Text.Size = new System.Drawing.Size(116, 28);
+            this.NumberPlant_Text.Size = new System.Drawing.Size(47, 28);
             this.NumberPlant_Text.TabIndex = 1;
+            this.NumberPlant_Text.TextChanged += new System.EventHandler(this.NumberPlant_Text_TextChanged);
             this.NumberPlant_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberPlant_Text_KeyPress);
+            this.NumberPlant_Text.Validating += new System.ComponentModel.CancelEventHandler(this.NumberPlant_Text_Validating);
             // 
             // AmountMoney_Text
             // 
+            this.AmountMoney_Text.BackColor = System.Drawing.Color.White;
             this.AmountMoney_Text.BorderColor = System.Drawing.Color.Black;
             this.AmountMoney_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.AmountMoney_Text.Location = new System.Drawing.Point(345, 205);
@@ -193,6 +205,7 @@
             this.AmountMoney_Text.TabIndex = 3;
             this.AmountMoney_Text.TextChanged += new System.EventHandler(this.AmountMoney_Text_TextChanged);
             this.AmountMoney_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AmountMoney_Text_KeyPress);
+            this.AmountMoney_Text.Validating += new System.ComponentModel.CancelEventHandler(this.AmountMoney_Text_Validating);
             // 
             // MaxPlant_Title
             // 
@@ -228,13 +241,15 @@
             // 
             // TypeMaterial_Text
             // 
+            this.TypeMaterial_Text.BackColor = System.Drawing.Color.White;
             this.TypeMaterial_Text.BorderColor = System.Drawing.Color.Black;
             this.TypeMaterial_Text.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.TypeMaterial_Text.Location = new System.Drawing.Point(345, 120);
             this.TypeMaterial_Text.Name = "TypeMaterial_Text";
-            this.TypeMaterial_Text.Size = new System.Drawing.Size(116, 28);
+            this.TypeMaterial_Text.Size = new System.Drawing.Size(208, 28);
             this.TypeMaterial_Text.TabIndex = 2;
             this.TypeMaterial_Text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TypeMaterial_Text_KeyPress);
+            this.TypeMaterial_Text.Validating += new System.ComponentModel.CancelEventHandler(this.TypeMaterial_Text_Validating);
             // 
             // MaxType_Title
             // 
@@ -252,6 +267,29 @@
             this.MaxType_Title.Text = "The maximum types of materials:";
             this.MaxType_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // NumberPlant_DropDown
+            // 
+            this.NumberPlant_DropDown.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NumberPlant_DropDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.NumberPlant_DropDown.AutoSize = false;
+            this.NumberPlant_DropDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NumberPlant_DropDown.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.NumberPlant_DropDown.Location = new System.Drawing.Point(345, 33);
+            this.NumberPlant_DropDown.Name = "NumberPlant_DropDown";
+            this.NumberPlant_DropDown.Size = new System.Drawing.Size(155, 28);
+            this.NumberPlant_DropDown.TabIndex = 6;
+            this.NumberPlant_DropDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumberPlant_DropDown_KeyDown);
+            this.NumberPlant_DropDown.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.NumberPlant_DropDown_SelectedIndexChanged);
+            this.NumberPlant_DropDown.VisualListItemFormatting += new Telerik.WinControls.UI.VisualListItemFormattingEventHandler(this.NumberPlant_DropDown_VisualListItemFormatting);
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.NumberPlant_DropDown.GetChildAt(0).GetChildAt(0))).ForeColor = System.Drawing.Color.Black;
+            ((Telerik.WinControls.UI.RadDropDownTextBoxElement)(this.NumberPlant_DropDown.GetChildAt(0).GetChildAt(2).GetChildAt(0).GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 11F);
+            // 
+            // Error_Provider
+            // 
+            this.Error_Provider.ContainerControl = this;
+            // 
             // PageSetting_GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -259,6 +297,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(600, 340);
+            this.Controls.Add(this.NumberPlant_DropDown);
             this.Controls.Add(this.TypeMaterial_Text);
             this.Controls.Add(this.MaxMoney_Title);
             this.Controls.Add(this.MaxType_Title);
@@ -272,6 +311,8 @@
             this.Text = "PageSetting_GUI";
             this.Load += new System.EventHandler(this.PageSetting_GUI_Load);
             this.Menu_Button.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NumberPlant_DropDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Error_Provider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,5 +330,7 @@
         private Bunifu.Framework.UI.BunifuCustomLabel MaxMoney_Title;
         private Bunifu.Framework.BunifuCustomTextbox TypeMaterial_Text;
         private Bunifu.Framework.UI.BunifuCustomLabel MaxType_Title;
+        private Telerik.WinControls.UI.RadDropDownList NumberPlant_DropDown;
+        private System.Windows.Forms.ErrorProvider Error_Provider;
     }
 }

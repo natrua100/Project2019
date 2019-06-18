@@ -24,6 +24,7 @@ namespace TakeCareOfPlants
         {
             try {
                 QuyDinh_BUS.QuyDinh_DTOs = QuyDinh_BUS.GetValueQuyDinh();
+                QuyDinh_BUS.ViTri_DTOs = QuyDinh_BUS.GetValueViTri();
             } catch (Exception ex) {
                 Function_GUI.ShowErrorDialog(ex.Message);
             }

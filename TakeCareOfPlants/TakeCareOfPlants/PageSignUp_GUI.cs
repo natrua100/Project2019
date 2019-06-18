@@ -47,13 +47,13 @@ namespace TakeCareOfPlants
             ActiveControl = null;
             pageSignUp = this;
 
-            if (User_Name_Text.Text == "") {
+            if (string.IsNullOrEmpty(User_Name_Text.Text)) {
                 User_Name_Text.LineIdleColor = Color.Red;
             }
-            if (Password_Text.Text == "") {
+            if (string.IsNullOrEmpty(Password_Text.Text)) {
                 Password_Text.LineIdleColor = Color.Red;
             }
-            if (Confirm_Password_Text.Text == "") {
+            if (string.IsNullOrEmpty(Confirm_Password_Text.Text)) {
                 Confirm_Password_Text.LineIdleColor = Color.Red;
             }
             try {
@@ -102,7 +102,7 @@ namespace TakeCareOfPlants
             Password_Text.isPassword = true;
             Error_Title.Visible = false;
             Error_Title.Visible = false;
-            if (Password_Text.Text == "") {
+            if (string.IsNullOrEmpty(Password_Text.Text)) {
                 Password_Text.isPassword = false;
             } else {
                 Password_Text.LineIdleColor = Color.DeepSkyBlue;
@@ -113,7 +113,7 @@ namespace TakeCareOfPlants
         {
             Confirm_Password_Text.isPassword = true;
             Error_Title.Visible = false;
-            if (Confirm_Password_Text.Text == "") {
+            if (string.IsNullOrEmpty(Confirm_Password_Text.Text)) {
                 Confirm_Password_Text.isPassword = false;
             } else {
                 Confirm_Password_Text.LineIdleColor = Color.DeepSkyBlue;

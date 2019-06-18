@@ -97,10 +97,10 @@ namespace TakeCareOfPlants
         {
             ActiveControl = null;
             pageLogin = this;
-            if (User_Name_Text.Text == "") {
+            if (string.IsNullOrEmpty(User_Name_Text.Text)) {
                 User_Name_Text.LineIdleColor = Color.Red;
             }
-            if (Password_Text.Text == "") {
+            if (string.IsNullOrEmpty(Password_Text.Text)) {
                 Password_Text.LineIdleColor = Color.Red;
             }
             try {

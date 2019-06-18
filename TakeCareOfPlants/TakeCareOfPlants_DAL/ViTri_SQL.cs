@@ -24,7 +24,7 @@ namespace TakeCareOfPlants_DAL
                 reader = command.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        viTri_DTOs.Add(new ViTri_DTO(reader.GetString("ID"), reader.GetString("TenViTri")));
+                        viTri_DTOs.Add(new ViTri_DTO(reader.GetString("ID"), reader.GetString("TenViTri"), reader.GetInt32("SoCayToiDa")));
                     }
                 }
                 reader.Close();
@@ -38,12 +38,12 @@ namespace TakeCareOfPlants_DAL
             return viTri_DTOs;
         }
 
-        public List<Tuple<string, int>> GetAvailableLocation()
+        public List<ViTri_DTO> GetAvailableLocation()
         {
-            List<Tuple<string, int>> tuples = new List<Tuple<string, int>>();
+            List<ViTri_DTO> tuples = new List<ViTri_DTO>();
             command = new MySqlCommand {
-                CommandText = "SELECT a.ID, COUNT(*) AS 'COUNT(ID)' FROM vitri AS a " +
-                "INNER JOIN caycanh_vitri AS b " +
+                CommandText = "SELECT a.ID, a.TenViTri ,COUNT(b.IDViTri) AS 'COUNT(ID)' FROM vitri AS a " +
+                "LEFT JOIN caycanh_vitri AS b " +
                 "ON a.ID = b.IDViTri " +
                 "GROUP BY a.ID;",
                 Connection = databaseConnection.Connection
@@ -53,7 +53,7 @@ namespace TakeCareOfPlants_DAL
                 reader = command.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        tuples.Add(new Tuple<string, int>(reader.GetString("ID"), reader.GetInt32("COUNT(ID)")));
+                        tuples.Add(new ViTri_DTO(reader.GetString("ID"), reader.GetString("TenViTri"), reader.GetInt32("COUNT(ID)")));
                     }
                 }
                 reader.Close();

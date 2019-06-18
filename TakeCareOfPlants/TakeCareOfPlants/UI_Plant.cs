@@ -28,10 +28,9 @@ namespace TakeCareOfPlants
         public UI_Plant()
         {
             try {
-                listViTri = cayCanhBUS.GetValueViTri();
+                listViTri = QuyDinh_BUS.ViTri_DTOs;
                 listLoai = cayCanhBUS.GetValueLoai();
                 listTinhTrang = cayCanhBUS.GetValueTinhTrang();
-                cayCanhBUS.GetTotalAvailableLocation();
             } catch (Exception ex) {
                 Function_GUI.ShowErrorDialog(ex.Message);
             }
@@ -54,31 +53,33 @@ namespace TakeCareOfPlants
             foreach (TinhTrang_DTO tinhTrangDTO in listTinhTrang) {
                 Status_ComboBox.AddItem(tinhTrangDTO.TinhTrang);
             }
+
+            Planing_Data_DateTime.Value = DateTime.Now;
         }
 
         private void Create_Button_Click(object sender, EventArgs e)
         {
             bool createSuccess = true;
-            Loai_DTO loaiDTO = listLoai.Find(r => r.Loai == Type_Of_Plant_ComboBox.selectedValue);
-            ViTri_DTO viTriDTO = listViTri.Find(v => v.TenViTri == Planting_Location_ComboBox.selectedValue);
-            TinhTrang_DTO tinhTrangDTO = listTinhTrang.Find(t => t.TinhTrang == Status_ComboBox.selectedValue);
+            Loai_DTO loaiDTO = listLoai[Type_Of_Plant_ComboBox.selectedIndex];
+            ViTri_DTO viTriDTO = listViTri[Planting_Location_ComboBox.selectedIndex];
+            TinhTrang_DTO tinhTrangDTO = listTinhTrang[Status_ComboBox.selectedIndex];
 
-            if (Name_Plant_Text.Text == "") {
+            if (string.IsNullOrEmpty(Name_Plant_Text.Text)) {
                 Name_Plant_Text.HintForeColor = Color.Red;
                 createSuccess = false;
             }
 
-            if (loaiDTO == null) {
+            if (Type_Of_Plant_ComboBox.selectedIndex == 0) {
                 Type_Of_Plant_ComboBox.ForeColor = Color.Red;
                 createSuccess = false;
             }
 
-            if (viTriDTO == null) {
+            if (Planting_Location_ComboBox.selectedIndex == 0) {
                 Planting_Location_ComboBox.ForeColor = Color.Red;
                 createSuccess = false;
             }
 
-            if (tinhTrangDTO == null) {
+            if (Status_ComboBox.selectedIndex == 0) {
                 Status_ComboBox.ForeColor = Color.Red;
                 createSuccess = false;
             }
@@ -155,7 +156,7 @@ namespace TakeCareOfPlants
         private void Name_Plant_Text_OnValueChanged(object sender, EventArgs e)
         {
             Name_Plant_Text.HintForeColor = Color.Black;
-            if (Name_Plant_Text.Text == "") {
+            if (string.IsNullOrEmpty(Name_Plant_Text.Text)) {
                 Name_Plant_Text.Focus();
             }
         }

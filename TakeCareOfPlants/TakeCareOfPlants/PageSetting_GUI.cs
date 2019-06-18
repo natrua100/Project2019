@@ -1,20 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using TakeCareOfPlants_BUS;
 using TakeCareOfPlants_DTO;
+using Telerik.WinControls.UI;
+using Telerik.WinControls.UI.Data;
 
 namespace TakeCareOfPlants
 {
     public partial class PageSetting_GUI : Form
     {
         private static PageSetting_GUI pageSetting;
+        private List<ViTri_DTO> list_ViTri_DTO;
 
         public PageSetting_GUI()
         {
+            list_ViTri_DTO = QuyDinh_BUS.GetValueViTri();
+
             InitializeComponent();
+
+            foreach (ViTri_DTO viTriDTO in list_ViTri_DTO) {
+                NumberPlant_DropDown.Items.Add(viTriDTO.TenViTri);
+            }
         }
 
         public static PageSetting_GUI Instance
@@ -29,40 +39,51 @@ namespace TakeCareOfPlants
 
         private void PageSetting_GUI_Load(object sender, EventArgs e)
         {
-            NumberPlant_Text.Text = QuyDinh_BUS.QuyDinh_DTOs[1].SoCayToiDa.ToString();
-            TypeMaterial_Text.Text = QuyDinh_BUS.QuyDinh_DTOs[1].SoLoaiVatTu.ToString();
-            AmountMoney_Text.Text = string.Format("{0:#,#}", QuyDinh_BUS.QuyDinh_DTOs[1].SoTienToiDa);
+            try {
+                NumberPlant_DropDown_Set(QuyDinh_BUS.GetValueViTri(), 1);
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
+            }
         }
 
         private void Default_Button_Click(object sender, EventArgs e)
         {
-            NumberPlant_Text.Text = QuyDinh_BUS.QuyDinh_DTOs[0].SoCayToiDa.ToString();
-            TypeMaterial_Text.Text = QuyDinh_BUS.QuyDinh_DTOs[0].SoLoaiVatTu.ToString();
-            AmountMoney_Text.Text = string.Format("{0:#,#}", QuyDinh_BUS.QuyDinh_DTOs[0].SoTienToiDa);
+            try {
+                NumberPlant_DropDown_Set(QuyDinh_BUS.GetAvailableViTri(), 0);
+            } catch (Exception ex) {
+                Function_GUI.ShowErrorDialog(ex.Message);
+            }
         }
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
-            QuyDinh_DTO quyDinhDTO = new QuyDinh_DTO {
-                SoCayToiDa = int.Parse(NumberPlant_Text.Text),
-                SoLoaiVatTu = int.Parse(TypeMaterial_Text.Text),
-                SoTienToiDa = (long)decimal.Parse(AmountMoney_Text.Text, NumberStyles.Currency)
-            };
+            if (ValidateChildren(ValidationConstraints.Enabled)) {
+                switch (MessageBox.Show(
+                        "Are you sure you want to Save?",
+                        "Confirmation",
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Information)) {
+                    case DialogResult.OK: {
+                            try {
+                                QuyDinh_BUS.QuyDinh_DTOs[1] = new QuyDinh_DTO {
+                                    SoLoaiVatTu = int.Parse(TypeMaterial_Text.Text),
+                                    SoTienToiDa = (long)decimal.Parse(
+                                        AmountMoney_Text.Text,
+                                        NumberStyles.Currency)
+                                };
 
-            switch (MessageBox.Show("Are you sure you want to Save?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)) {
-                case DialogResult.OK: {
-                        try {
-                            QuyDinh_BUS.UpdateValueQuyDinh(quyDinhDTO);
-                            DialogSuccess_GUI.Instance.ShowDialog();
-                        } catch (Exception ex) {
-                            Function_GUI.ShowErrorDialog(ex.ToString());
+                                QuyDinh_BUS.UpdateValueQuyDinh(list_ViTri_DTO);
+                                DialogSuccess_GUI.Instance.ShowDialog();
+                            } catch (Exception ex) {
+                                Function_GUI.ShowErrorDialog(ex.Message);
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case DialogResult.Cancel: {
-                        new CancelEventArgs().Cancel = true;
-                        break;
-                    }
+                    case DialogResult.Cancel: {
+                            new CancelEventArgs().Cancel = true;
+                            break;
+                        }
+                }
             }
         }
 
@@ -75,7 +96,9 @@ namespace TakeCareOfPlants
         private void AmountMoney_Text_TextChanged(object sender, EventArgs e)
         {
             if (AmountMoney_Text.Text != "") {
-                AmountMoney_Text.Text = string.Format("{0:#,#}", double.Parse(AmountMoney_Text.Text));
+                AmountMoney_Text.Text = string.Format(
+                    "{0:#,#}",
+                    double.Parse(AmountMoney_Text.Text));
                 AmountMoney_Text.SelectionStart = AmountMoney_Text.Text.Length;
             }
         }
@@ -95,6 +118,100 @@ namespace TakeCareOfPlants
         private void AmountMoney_Text_KeyPress(object sender, KeyPressEventArgs e)
         {
             Function_GUI.IsNumberic(e);
+        }
+
+        private void NumberPlant_DropDown_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+                foreach (ViTri_DTO viTriDTO in list_ViTri_DTO) {
+                    if (viTriDTO.TenViTri == NumberPlant_DropDown.Text) {
+                        NumberPlant_Text.Enabled = true;
+                        return;
+                    }
+                };
+
+                NumberPlant_Text.Text = "";
+                NumberPlant_Text.Enabled = false;
+            }
+        }
+
+        private void NumberPlant_DropDown_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+        {
+            NumberPlant_Text.Enabled = true;
+
+            try {
+                if (NumberPlant_DropDown.Text != "") {
+                    NumberPlant_Text.Text = list_ViTri_DTO[e.Position]
+                        .SoCayToiDa
+                        .ToString();
+                }
+            } catch (Exception) {
+                NumberPlant_Text.Text = "";
+            }
+        }
+
+        private void NumberPlant_DropDown_VisualListItemFormatting(object sender, VisualItemFormattingEventArgs args)
+        {
+            args.VisualItem.Font = new Font(
+                family: NumberPlant_DropDown.Font.FontFamily,
+                emSize: 12);
+        }
+
+        private void NumberPlant_Text_TextChanged(object sender, EventArgs e)
+        {
+            if (NumberPlant_Text.Text != "") {
+                list_ViTri_DTO[NumberPlant_DropDown.SelectedIndex].SoCayToiDa = int.Parse(NumberPlant_Text.Text);
+            }
+        }
+
+        private void NumberPlant_Text_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(NumberPlant_Text.Text)) {
+                e.Cancel = true;
+                NumberPlant_Text.Focus();
+                Error_Provider.SetError(
+                    NumberPlant_Text,
+                    "Please select your plant location or enter your number plant !");
+            } else {
+                e.Cancel = false;
+                Error_Provider.SetError(NumberPlant_Text, null);
+            }
+        }
+
+        private void TypeMaterial_Text_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TypeMaterial_Text.Text)) {
+                e.Cancel = true;
+                TypeMaterial_Text.Focus();
+                Error_Provider.SetError(
+                    TypeMaterial_Text,
+                    "Please enter your type material !");
+            } else {
+                e.Cancel = false;
+                Error_Provider.SetError(TypeMaterial_Text, null);
+            }
+        }
+
+        private void AmountMoney_Text_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(AmountMoney_Text.Text)) {
+                e.Cancel = true;
+                AmountMoney_Text.Focus();
+                Error_Provider.SetError(
+                    AmountMoney_Text,
+                    "Please enter your amount money !");
+            } else {
+                e.Cancel = false;
+                Error_Provider.SetError(AmountMoney_Text, null);
+            }
+        }
+
+        private void NumberPlant_DropDown_Set(List<ViTri_DTO> viTri_DTOs, int index)
+        {
+            list_ViTri_DTO = viTri_DTOs;
+            NumberPlant_Text.Text = list_ViTri_DTO[NumberPlant_DropDown.SelectedIndex = 0].SoCayToiDa.ToString();
+            TypeMaterial_Text.Text = QuyDinh_BUS.QuyDinh_DTOs[index].SoLoaiVatTu.ToString();
+            AmountMoney_Text.Text = string.Format("{0:#,#}", QuyDinh_BUS.QuyDinh_DTOs[index].SoTienToiDa);
         }
 
         protected override CreateParams CreateParams

@@ -1,6 +1,6 @@
+C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.exe.config
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.exe
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.pdb
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants.exe.config
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\netstandard.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\System.AppContext.dll
@@ -108,9 +108,6 @@ C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPl
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants_BUS.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants_DTO.dll
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Telerik.WinControls.dll
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Telerik.WinControls.UI.dll
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TelerikCommon.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants_DAL.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\MySql.Data.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Google.Protobuf.dll
@@ -126,8 +123,6 @@ C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPl
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Bunifu.UI.WinForms.BunifuUserControl.xml
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Bunifu_UI_v1.5.3.xml
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\System.Diagnostics.DiagnosticSource.xml
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Telerik.WinControls.xml
-C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\Telerik.WinControls.UI.xml
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\TakeCareOfPlants_DAL.pdb
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\bin\Debug\MySql.Data.xml
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants\obj\Debug\TakeCareOfPlants_GUI.csprojAssemblyReference.cache

@@ -24,7 +24,6 @@ namespace TakeCareOfPlants_DAL
                 if (reader.HasRows) {
                     while (reader.Read()) {
                         quyDinh_DTOs.Add(new QuyDinh_DTO(
-                            reader.GetInt32("SoCayToiDa"),
                             reader.GetInt32("SoLoaiVatTu"),
                             reader.GetInt64("SoTienToiDa")));
                     }
@@ -40,23 +39,36 @@ namespace TakeCareOfPlants_DAL
             return quyDinh_DTOs;
         }
 
-        public void UpdateDataQuyDinh(QuyDinh_DTO quyDinh_DTO)
+        public void UpdateDataQuyDinh(List<ViTri_DTO> viTri_DTOs, QuyDinh_DTO quyDinh_DTO)
         {
             try {
                 databaseConnection.OpenConnect();
+
+                foreach (ViTri_DTO viTriDTO in viTri_DTOs) {
+                    command = new MySqlCommand {
+                        Connection = databaseConnection.Connection,
+                        CommandText = "UPDATE vitri " +
+                        "SET SoCayToiDa = @slvt " +
+                        "WHERE ID = @id;"
+                    };
+                    command.Parameters.AddWithValue("@id", viTriDTO.Id);
+                    command.Parameters.AddWithValue("@slvt", viTriDTO.SoCayToiDa);
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+                }
+
                 command = new MySqlCommand {
                     Connection = databaseConnection.Connection,
                     CommandText = "UPDATE quydinh AS h " +
                     "JOIN (SELECT MAX(ID) AS max_id FROM quydinh) AS m " +
                     "ON m.max_id = h.ID " +
-                    "SET h.SoCayToiDa = @sctd, h.SoLoaiVatTu = @slvt, h.SoTienToiDa = @sttd;"
+                    "SET h.SoLoaiVatTu = @slvt, h.SoTienToiDa = @sttd;"
                 };
-
-                command.Parameters.AddWithValue("@sctd", quyDinh_DTO.SoCayToiDa);
                 command.Parameters.AddWithValue("@slvt", quyDinh_DTO.SoLoaiVatTu);
                 command.Parameters.AddWithValue("@sttd", quyDinh_DTO.SoTienToiDa);
                 command.ExecuteNonQuery();
                 command.Dispose();
+
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
                 command.Dispose();

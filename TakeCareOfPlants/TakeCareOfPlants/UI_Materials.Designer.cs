@@ -186,6 +186,7 @@
             this.Create_Button.TabIndex = 44;
             this.Create_Button.Text = "New Coupon";
             this.Create_Button.UseVisualStyleBackColor = false;
+            this.Create_Button.Click += new System.EventHandler(this.Create_Button_Click);
             // 
             // Create_Button_Elipse
             // 
