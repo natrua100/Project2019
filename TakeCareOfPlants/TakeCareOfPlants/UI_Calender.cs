@@ -13,6 +13,8 @@ namespace TakeCareOfPlants
     {
         private static UI_Calender uiCalender;
         private Lich_BUS lichBUS = new Lich_BUS();
+        private VatTu_BUS vatTuBUS = new VatTu_BUS();
+        private CayCanh_BUS cayCanhBUS = new CayCanh_BUS();
         private List<Tuple<CayCanh_DTO, ViTri_DTO>> tupleCayCanhViTri;
         private List<Tuple<VatTu_DTO, DonVi_DTO>> tupleVatTuDonVi;
 
@@ -29,8 +31,8 @@ namespace TakeCareOfPlants
         public UI_Calender()
         {
             try {
-                tupleCayCanhViTri = lichBUS.GetValueCayCanhViTri();
-                tupleVatTuDonVi = lichBUS.GetValueVatTuDonVi();
+                tupleCayCanhViTri = cayCanhBUS.GetValueCayCanhViTri();
+                tupleVatTuDonVi = vatTuBUS.GetValueVatTuDonVi();
             } catch (Exception ex) {
                 Function_GUI.ShowErrorDialog(ex.Message);
             }
@@ -56,7 +58,7 @@ namespace TakeCareOfPlants
                 });
             }
         }
-        
+
         private void Material_DropDown_ItemCheckedChanged(object sender, RadCheckedListDataItemEventArgs e)
         {
             if (e.Item.Checked) {
@@ -104,44 +106,66 @@ namespace TakeCareOfPlants
         {
             List<string> listIDCayCanh = new List<string>();
             List<Tuple<VatTu_DTO, DonVi_DTO>> listVatTuDoVi = new List<Tuple<VatTu_DTO, DonVi_DTO>>();
-            DateTime dt = Time_Pick.Value ?? DateTime.Now;
+           
 
-            Lich_DTO lichDTO = new Lich_DTO(
-                DateTime.Now,
-                dt.TimeOfDay,
-                Note_Text.Text
-            );
+            List_Calender_DataGrid.Rows.Add(
+                    List_Calender_DataGrid.Rows.Count + 1,
+                    "asfasvasv",
+                    "",
+                    "asfasf",
+                    "safasf",
+                    "safsafas"
+                );
+            DataGridViewComboBoxColumn boxColumn = (DataGridViewComboBoxColumn)List_Calender_DataGrid.Columns[2];
+            boxColumn.Items.Add("10");
+            boxColumn.Items.Add("30");
+            boxColumn.Items.Add("80");
+            boxColumn.Items.Add("100");
 
-            foreach (DescriptionTextCheckedListDataItem checkItems in PlantName_DropDown.CheckedItems) {
-                listIDCayCanh.Add(tupleCayCanhViTri[checkItems.RowIndex].Item1.Id);
-            }
+            DataGridViewComboBoxCell boxCell = (DataGridViewComboBoxCell)List_Calender_DataGrid.Rows[0].Cells[boxColumn.Name];
+            boxCell.Items.Add("80");
+            boxCell.Items.Add("100");
 
-            foreach (DescriptionTextCheckedListDataItem checkItems in Material_DropDown.CheckedItems) {
-                listVatTuDoVi.Add(tupleVatTuDonVi[checkItems.RowIndex]);
-            }
+            
+            //Lich_DTO lichDTO = new Lich_DTO(
+            //    DateTime.Now,
+            //    (Time_Pick.Value ?? DateTime.Now).TimeOfDay,
+            //    Note_Text.Text
+            //);
 
-            listIDCayCanh.Sort();
-            listVatTuDoVi = listVatTuDoVi.OrderBy(x => x.Item1.Id).ToList();
+            //foreach (DescriptionTextCheckedListDataItem checkItems in PlantName_DropDown.CheckedItems) {
+            //    listIDCayCanh.Add(tupleCayCanhViTri[checkItems.RowIndex].Item1.Id);
+            //}
 
-            try {
-                lichBUS.InsertValueLich(
-                    lichDTO, 
-                    listIDCayCanh,
-                    listVatTuDoVi);
+            //foreach (DescriptionTextCheckedListDataItem checkItems in Material_DropDown.CheckedItems) {
+            //    listVatTuDoVi.Add(tupleVatTuDonVi[checkItems.RowIndex]);
+            //}
 
-                for (int i = 0; i < Material_DropDown.CheckedItems.Count; i++) {
-                    List_Calender_DataGrid.Rows.Add(
-                        List_Calender_DataGrid.Rows.Count + 1,
-                        lichDTO.ThoiGian.ToString(@"hh\:mm"),
-                        listVatTuDoVi[i].Item1.TenVatTu,
-                        listVatTuDoVi[i].Item2.DonVi,
-                        listVatTuDoVi[i].Item1.SoLuong,
-                        lichDTO.GhiChu
-                    );
-                }
-            } catch (Exception ex) {
-                Function_GUI.ShowErrorDialog(ex.Message);
-            }
+            //listIDCayCanh.Sort();
+            //listVatTuDoVi = listVatTuDoVi.OrderBy(x => x.Item1.Id).ToList();
+
+            //try {
+            //    lichBUS.InsertValueLich(
+            //        lichDTO,
+            //        listIDCayCanh,
+            //        listVatTuDoVi);
+
+            //    boxCell.MaxDropDownItems = 4;
+            //    for (int i=0; i < Material_DropDown.CheckedItems.Count; i++) {
+            //        boxCell.Items.Add(listVatTuDoVi[i]);
+            //    }
+
+            //    List_Calender_DataGrid.Rows.Add(
+            //        List_Calender_DataGrid.Rows.Count + 1,
+            //        lichDTO.ThoiGian.ToString(@"hh\:mm"),
+            //        boxCell,
+            //        listVatTuDoVi[0].Item2.DonVi,
+            //        listVatTuDoVi[0].Item1.SoLuong,
+            //        lichDTO.GhiChu
+            //    );
+            //} catch (Exception ex) {
+            //    Function_GUI.ShowErrorDialog(ex.Message);
+            //}
         }
 
         private void Clear_Button_Click(object sender, EventArgs e)

@@ -170,6 +170,7 @@
       <DependentUpon>DialogSuccess_GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Function_GUI.cs" />
+    <Compile Include="Generic_GUI.cs" />
     <Compile Include="PageLogin_GUI.cs">
       <SubType>Form</SubType>
     </Compile>

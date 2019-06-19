@@ -12,7 +12,6 @@ namespace TakeCareOfPlants_BUS
         public bool LogInSuccess(string userName, string password)
         {
             Login_DTO loginDTO = loginSQL.GetDataLogin(userName);
-
             return Function_BUS.GenerateHash(password, loginDTO.Salt) == loginDTO.Hash;
         }
     }

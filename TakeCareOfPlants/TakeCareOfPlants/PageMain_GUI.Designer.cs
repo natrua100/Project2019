@@ -551,15 +551,13 @@
             // 
             // Panel_Center_Controller
             // 
-            this.Panel_Center_Controller.BackColor = System.Drawing.Color.White;
             this.Logo_Transition.SetDecoration(this.Panel_Center_Controller, BunifuAnimatorNS.DecorationType.None);
             this.Menu_Transition.SetDecoration(this.Panel_Center_Controller, BunifuAnimatorNS.DecorationType.None);
             this.Panel_Center_Controller.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Center_Controller.Location = new System.Drawing.Point(67, 42);
-            this.Panel_Center_Controller.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel_Center_Controller.Name = "Panel_Center_Controller";
             this.Panel_Center_Controller.Size = new System.Drawing.Size(1248, 580);
-            this.Panel_Center_Controller.TabIndex = 3;
+            this.Panel_Center_Controller.TabIndex = 2;
             // 
             // TimeInc
             // 
@@ -644,9 +642,9 @@
         private System.Windows.Forms.Label DateTime_Title;
         private System.Windows.Forms.Timer TimeInc;
         private System.Windows.Forms.Panel VerticalDivider2;
-        private System.Windows.Forms.Panel Panel_Center_Controller;
         private BunifuAnimatorNS.BunifuTransition Logo_Transition;
         private System.Windows.Forms.PictureBox Icon_Main;
+        private System.Windows.Forms.Panel Panel_Center_Controller;
     }
 }
 

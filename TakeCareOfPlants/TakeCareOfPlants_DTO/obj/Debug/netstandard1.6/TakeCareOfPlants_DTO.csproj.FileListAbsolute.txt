@@ -6,3 +6,4 @@ C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPl
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants_DTO\obj\Debug\netstandard1.6\TakeCareOfPlants_DTO.AssemblyInfo.cs
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants_DTO\obj\Debug\netstandard1.6\TakeCareOfPlants_DTO.dll
 C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants_DTO\obj\Debug\netstandard1.6\TakeCareOfPlants_DTO.pdb
+C:\Nhap Mon Cong Nghe Phan Men\Project\Project2019\TakeCareOfPlants\TakeCareOfPlants_DTO\obj\Debug\netstandard1.6\TakeCareOfPlants_DTO.csprojAssemblyReference.cache

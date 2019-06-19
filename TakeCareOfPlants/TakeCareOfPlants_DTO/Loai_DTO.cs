@@ -2,26 +2,13 @@
 {
     public class Loai_DTO
     {
-        private string id;
-        private string loai;
+        public Loai_DTO() {}
 
-        public Loai_DTO()
-        {
+        public Loai_DTO(string loai) => (Loai) = (loai); 
 
-        }
+        public Loai_DTO(string id, string loai) => (Id, Loai) = (id, loai);
 
-        public Loai_DTO(string loai)
-        {
-            this.loai = loai;
-        }
-
-        public Loai_DTO(string id, string loai)
-        {
-            this.id = id;
-            this.loai = loai;
-        }
-
-        public string Loai { get => loai; set => loai = value; }
-        public string Id { get => id; set => id = value; }
+        public string Id { get; set; }
+        public string Loai { get; set; }
     }
 }

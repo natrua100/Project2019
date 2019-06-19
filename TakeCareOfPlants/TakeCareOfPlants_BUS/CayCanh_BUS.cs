@@ -25,19 +25,12 @@ namespace TakeCareOfPlants_BUS
             });
         }
 
-        public List<ViTri_DTO> GetValueViTri()
-        {
-            return viTriSQL.GetDataViTri();
-        }
+        public List<ViTri_DTO> GetValueViTri() => viTriSQL.GetDataViTri();
 
-        public List<Loai_DTO> GetValueLoai()
-        {
-            return loaiSQL.GetDataLoai();
-        }
+        public List<Loai_DTO> GetValueLoai() => loaiSQL.GetDataLoai();
 
-        public List<TinhTrang_DTO> GetValueTinhTrang()
-        {
-            return tinhTrangDTO.GetDataTinhTrang();
-        }
+        public List<TinhTrang_DTO> GetValueTinhTrang() => tinhTrangDTO.GetDataTinhTrang();
+
+        public List<Tuple<CayCanh_DTO, ViTri_DTO>> GetValueCayCanhViTri() => cayCanhSQL.GetDataCayCanhViTri();
     }
 }

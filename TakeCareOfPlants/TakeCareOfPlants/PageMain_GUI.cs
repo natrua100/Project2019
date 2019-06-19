@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using TakeCareOfPlants_BUS;
+using TakeCareOfPlants_DTO;
 
 namespace TakeCareOfPlants
 {
     public partial class PageMain_GUI : Form
     {
         private static PageMain_GUI pageMain;
+        private static List<VatTu_DTO> vatTu_DTOs; 
 
         public static PageMain_GUI Instance
         {

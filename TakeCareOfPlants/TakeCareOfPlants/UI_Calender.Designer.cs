@@ -37,12 +37,6 @@
             this.Time_Title = new System.Windows.Forms.Label();
             this.Note_Title = new System.Windows.Forms.Label();
             this.List_Calender_DataGrid = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlantName_Title = new System.Windows.Forms.Label();
             this.List_Calender_Elipse = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.Create_Button = new System.Windows.Forms.Button();
@@ -58,6 +52,12 @@
             this.object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb = new Telerik.WinControls.UI.RadDropDownListRootElement();
             this.object_e72eab59_cf89_4488_90ad_be547ab79041 = new Telerik.WinControls.RootRadElement();
             this.Note_Text = new Bunifu.Framework.BunifuCustomTextbox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.List_Calender_DataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PlantName_DropDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Material_DropDown)).BeginInit();
@@ -110,6 +110,7 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.List_Calender_DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.List_Calender_DataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.List_Calender_DataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.List_Calender_DataGrid.BackgroundColor = System.Drawing.Color.LightBlue;
             this.List_Calender_DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.List_Calender_DataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -164,52 +165,6 @@
             this.List_Calender_DataGrid.Size = new System.Drawing.Size(769, 395);
             this.List_Calender_DataGrid.TabIndex = 29;
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column1.FillWeight = 30F;
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "STT";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 55;
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 86.92893F;
-            this.Column2.HeaderText = "Thời Gian";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 86.92893F;
-            this.Column3.HeaderText = "Vật Tư";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 86.92893F;
-            this.Column4.HeaderText = "Đơn Vị Tính";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Số Lượng";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Ghi Chú";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
             // PlantName_Title
             // 
             this.PlantName_Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -256,7 +211,10 @@
             this.PlantName_DropDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PlantName_DropDown.AutoSize = false;
+            this.PlantName_DropDown.AutoSizeItems = true;
             this.PlantName_DropDown.BackColor = System.Drawing.Color.Transparent;
+            this.PlantName_DropDown.DropDownMinSize = new System.Drawing.Size(343, 0);
+            this.PlantName_DropDown.DropDownSizingMode = ((Telerik.WinControls.UI.SizingMode)((Telerik.WinControls.UI.SizingMode.RightBottom | Telerik.WinControls.UI.SizingMode.UpDown)));
             this.PlantName_DropDown.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.PlantName_DropDown.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.PlantName_DropDown.Location = new System.Drawing.Point(604, 24);
@@ -274,6 +232,9 @@
             ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.PlantName_DropDown.GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 15F);
             ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.PlantName_DropDown.GetChildAt(0))).CustomFont = "None";
             ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.PlantName_DropDown.GetChildAt(0))).CustomFontSize = 15F;
+            ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.PlantName_DropDown.GetChildAt(0))).AutoSize = true;
+            ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.PlantName_DropDown.GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.PlantName_DropDown.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.PlantName_DropDown.GetChildAt(0).GetChildAt(0))).AutoSize = true;
             ((Telerik.WinControls.UI.RadCheckedDropDownListEditableAreaElement)(this.PlantName_DropDown.GetChildAt(0).GetChildAt(2).GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 12F);
             ((Telerik.WinControls.UI.RadCheckedDropDownListEditableAreaElement)(this.PlantName_DropDown.GetChildAt(0).GetChildAt(2).GetChildAt(0))).CustomFontSize = 14F;
@@ -339,7 +300,10 @@
             this.Material_DropDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Material_DropDown.AutoSize = false;
+            this.Material_DropDown.AutoSizeItems = true;
             this.Material_DropDown.BackColor = System.Drawing.Color.Transparent;
+            this.Material_DropDown.DropDownMinSize = new System.Drawing.Size(356, 0);
+            this.Material_DropDown.DropDownSizingMode = Telerik.WinControls.UI.SizingMode.UpDown;
             this.Material_DropDown.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Material_DropDown.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Material_DropDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -359,6 +323,7 @@
             ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.Material_DropDown.GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 11F);
             ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.Material_DropDown.GetChildAt(0))).CustomFont = "None";
             ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.Material_DropDown.GetChildAt(0))).CustomFontSize = 12F;
+            ((Telerik.WinControls.UI.RadCheckedDropDownListElement)(this.Material_DropDown.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.WrapAroundChildren;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.Material_DropDown.GetChildAt(0).GetChildAt(0))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(189)))), ((int)(((byte)(232)))));
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.Material_DropDown.GetChildAt(0).GetChildAt(0))).AutoSize = true;
             ((Telerik.WinControls.UI.RadCheckedDropDownListEditableAreaElement)(this.Material_DropDown.GetChildAt(0).GetChildAt(2).GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -381,6 +346,12 @@
             this.Time_Pick.MinValue = new System.DateTime(((long)(0)));
             this.Time_Pick.Name = "Time_Pick";
             this.Time_Pick.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            // 
+            // 
+            // 
+            this.Time_Pick.RootElement.AutoSize = true;
+            this.Time_Pick.RootElement.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
+            this.Time_Pick.RootElement.FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
             this.Time_Pick.Size = new System.Drawing.Size(356, 62);
             this.Time_Pick.Step = 30;
             this.Time_Pick.TabIndex = 0;
@@ -417,6 +388,54 @@
             this.Note_Text.Size = new System.Drawing.Size(356, 212);
             this.Note_Text.TabIndex = 2;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column1.FillWeight = 30F;
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "STT";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 55;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 86.92893F;
+            this.Column2.HeaderText = "Thời Gian";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 86.92893F;
+            this.Column3.HeaderText = "Vật Tư";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 86.92893F;
+            this.Column4.HeaderText = "Đơn Vị Tính";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Số Lượng";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Ghi Chú";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // UI_Calender
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -451,12 +470,6 @@
         private System.Windows.Forms.Label Time_Title;
         private System.Windows.Forms.Label Note_Title;
         private Bunifu.Framework.UI.BunifuCustomDataGrid List_Calender_DataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Label PlantName_Title;
         private Bunifu.Framework.UI.BunifuElipse List_Calender_Elipse;
         private System.Windows.Forms.Button Create_Button;
@@ -472,5 +485,11 @@
         private Telerik.WinControls.UI.RadDropDownListRootElement object_58c7e8de_d9c3_4e5f_8d4b_c920b045c9fb;
         private Telerik.WinControls.RootRadElement object_e72eab59_cf89_4488_90ad_be547ab79041;
         private Bunifu.Framework.BunifuCustomTextbox Note_Text;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }

@@ -1,12 +1,17 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
+using TakeCareOfPlants_BUS;
+using TakeCareOfPlants_DTO;
 
 namespace TakeCareOfPlants
 {
     public partial class UI_Materials : UserControl
     {
         private static UI_Materials uiMaterials;
+        private VatTu_BUS vatTuBUS = new VatTu_BUS();
         private DateTimePicker dtp = new DateTimePicker();
 
         public static UI_Materials Instance
@@ -21,6 +26,8 @@ namespace TakeCareOfPlants
 
         private Rectangle Rectangle { get; set; }
         private TextBox Tb { get; set; }
+        private TextBox TbMaterial { get; set; }
+        private TextBox TbUnit { get; set; }
         private DataGridViewCell DataGridViewCell { get; set; }
 
         public UI_Materials()
@@ -40,7 +47,7 @@ namespace TakeCareOfPlants
 
         private void Coupon_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (e.ColumnIndex != -1 && e.RowIndex != -1 && Coupon_DataGrid.Columns[e.ColumnIndex].Name == "Time_Purchase") {
                 Rectangle = Coupon_DataGrid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
                 if (Coupon_DataGrid.CurrentCell.Value == null) {
@@ -75,16 +82,31 @@ namespace TakeCareOfPlants
                     e.Control.KeyPress -= Amount_KeyPress;
                     e.Control.KeyPress -= Money_KeyPress;
                     e.Control.KeyPress += Material_KeyPress;
+
+                    TbMaterial = (TextBox)e.Control;
+                    AutoCompleteStringCollection autoCompleteMaterial = new AutoCompleteStringCollection();
+                    Generic_GUI<VatTu_DTO, VatTu_BUS> generic_Material = new Generic_GUI<VatTu_DTO, VatTu_BUS>();
+                    generic_Material.AutoCompleteCell(TbMaterial, autoCompleteMaterial);
+                    break;
+                case 1:
+                    e.Control.KeyPress -= Amount_KeyPress;
+                    e.Control.KeyPress -= Money_KeyPress;
+
+                    TbUnit = (TextBox)e.Control;
+                    AutoCompleteStringCollection autoCompleteUnit = new AutoCompleteStringCollection();
+                    Generic_GUI<DonVi_DTO, VatTu_BUS> generic_Unit = new Generic_GUI<DonVi_DTO, VatTu_BUS>();
+                    generic_Unit.AutoCompleteCell(TbUnit, autoCompleteUnit);
                     break;
                 case 4:
-                    e.Control.KeyPress -= Money_KeyPress;
                     e.Control.KeyPress -= Material_KeyPress;
+                    e.Control.KeyPress -= Money_KeyPress;
                     e.Control.KeyPress += Amount_KeyPress;
                     break;
                 case 5:
-                    e.Control.KeyPress -= Amount_KeyPress;
                     e.Control.KeyPress -= Material_KeyPress;
+                    e.Control.KeyPress -= Amount_KeyPress;
                     e.Control.KeyPress += Money_KeyPress;
+
                     Tb = (TextBox)e.Control;
                     Tb.TextChanged += new EventHandler(Money_TextChanged);
                     break;
@@ -131,6 +153,7 @@ namespace TakeCareOfPlants
 
         private void Create_Button_Click(object sender, EventArgs e)
         {
+            //List<List<>>
             foreach (DataGridViewRow row in Coupon_DataGrid.Rows) {
                 foreach (DataGridViewCell cell in row.Cells) {
                     string value = cell.Value.ToString();
