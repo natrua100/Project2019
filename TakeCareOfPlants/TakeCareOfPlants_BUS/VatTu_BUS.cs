@@ -12,8 +12,8 @@ namespace TakeCareOfPlants_BUS
 
         public List<VatTu_DTO> GetValueVatTu() => vatTuSQL.GetDataVatTu();
 
-        public List<Tuple<VatTu_DTO, DonVi_DTO>> GetValueVatTuDonVi() => vatTuSQL.GetDataVatTuDonVi();
-
         public List<DonVi_DTO> GetValueDonVi() => donViSQL.GetDataDonVi();
+
+        public List<Tuple<VatTu_DTO, DonVi_DTO>> GetValueVatTuDonVi() => vatTuSQL.GetDataVatTuDonVi();
     }
 }

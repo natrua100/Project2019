@@ -4,8 +4,6 @@ namespace TakeCareOfPlants_DTO
 {
     public class CayCanh_DTO
     {
-        public CayCanh_DTO() {}
-
         public CayCanh_DTO(string s, string i) => (Id, TenCay) = (s, i);
 
         public CayCanh_DTO(string tenCay, Loai_DTO loai_DTO, TinhTrang_DTO tinhTrang_DTO, DateTime ngayTrong)

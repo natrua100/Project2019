@@ -45,7 +45,7 @@ namespace TakeCareOfPlants_DAL
         {
             List<Tuple<VatTu_DTO, DonVi_DTO>> tuples = new List<Tuple<VatTu_DTO, DonVi_DTO>>();
             command = new MySqlCommand {
-                CommandText = "SELECT a.ID, a.VatTu, b.DonVi FROM vattu AS a " +
+                CommandText = "SELECT a.ID, a.VatTu, b.DonVi, a.SoLuong FROM vattu AS a " +
                 "INNER JOIN donvi AS b " +
                 "ON a.IDDonVi = b.ID;",
                 Connection = databaseConnection.Connection
@@ -57,7 +57,10 @@ namespace TakeCareOfPlants_DAL
                     while (reader.Read()) {
                         tuples.Add(
                             new Tuple<VatTu_DTO, DonVi_DTO>(
-                                new VatTu_DTO(reader.GetString("ID"), reader.GetString("VatTu")),
+                                new VatTu_DTO(
+                                    reader.GetString("ID"), 
+                                    reader.GetString("VatTu"), 
+                                    reader.GetInt32("SoLuong")),
                                 new DonVi_DTO(reader.GetString("DonVi"))));
                     }
                 }

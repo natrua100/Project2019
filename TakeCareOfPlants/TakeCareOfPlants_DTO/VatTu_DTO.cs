@@ -4,7 +4,7 @@
     {
         public VatTu_DTO() {}
 
-        public VatTu_DTO(string id, string tenVatTu) => (Id, TenVatTu) = (id, tenVatTu);
+        public VatTu_DTO(string tenVatTu) => (TenVatTu) = (tenVatTu); 
 
         public VatTu_DTO(string tenVatTu, int soLuong) => (TenVatTu, SoLuong) = (tenVatTu, soLuong);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bunifu.Framework.UI;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -65,6 +66,15 @@ namespace TakeCareOfPlants
             public int bottomHeight;
         }
 
+        public static void ShowControl(Control control)
+        {
+            if (!PageMain_GUI.Instance.PanelController.Controls.Contains(control)) {
+                control.Dock = DockStyle.Fill;
+                PageMain_GUI.Instance.PanelController.Controls.Add(control);
+            }
+            control.BringToFront();
+        }
+
         public static void HideShowPage(Form form1, Form form2)
         {
             AnimateWindow(form1.Handle, 1000, AnimateWindowFlags.AW_BLEND | AnimateWindowFlags.AW_HIDE);
@@ -119,7 +129,7 @@ namespace TakeCareOfPlants
 
         public static void IsNumberic(KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar == '.')) {
                 e.Handled = true;
             }
         }
@@ -167,5 +177,18 @@ namespace TakeCareOfPlants
             button2.Enabled = false;
             button2.BackColor = Color.LightSlateGray;
         }
+
+        public static bool IsTheSameCellValue(BunifuCustomDataGrid dataGridView, int column, int row)
+        {
+            DataGridViewCell cell1 = dataGridView[column, row];
+            DataGridViewCell cell2 = dataGridView[column, row - 1];
+
+            if (cell1.Value == null || cell2.Value == null) {
+                return false;
+            }
+
+            return cell1.Value.ToString() == cell2.Value.ToString();
+        }
+
     }
 }

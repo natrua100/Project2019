@@ -9,46 +9,33 @@ namespace TakeCareOfPlants_DAL
     {
         private DatabaseConnection databaseConnection = new DatabaseConnection();
         private MySqlCommand command;
-        private string idLich;
+        private MySqlDataReader reader;
 
-        public void InsertDataLich(Lich_DTO lich_DTO, List<string> IdCayCanh, List<VatTu_DTO> vatTu_DTOs)
+        public string InsertAndGetLastIdDataLich()
         {
+            string lastId = null;
             try {
                 databaseConnection.OpenConnect();
 
                 command = new MySqlCommand {
                     Connection = databaseConnection.Connection,
-                    CommandText = "INSERT INTO lich(NgayLapLich, ThoiGian, GhiChu) VALUE (@nll, @tg, @gc)"
+                    CommandText = "INSERT INTO lich(NgayLapLich) VALUE (" + DateTime.Now.Date + ");"
                 };
-                command.Parameters.AddWithValue("@nll", lich_DTO.NgayLapLich);
-                command.Parameters.AddWithValue("@tg", lich_DTO.ThoiGian);
-                command.Parameters.AddWithValue("@gc", lich_DTO.GhiChu);
                 command.ExecuteNonQuery();
-                idLich = Convert.ToString(command.LastInsertedId);
                 command.Dispose();
 
-                foreach (string idCayCanh in IdCayCanh) {
-                    command = new MySqlCommand {
-                        Connection = databaseConnection.Connection,
-                        CommandText = "INSERT INTO caycanh_lich(IDCayCanh, IDLich) VALUE (@idcc, @idl)"
-                    };
-                    command.Parameters.AddWithValue("@idcc", idCayCanh);
-                    command.Parameters.AddWithValue("@idl", idLich);
-                    command.ExecuteNonQuery();
-                    command.Dispose();
+                command = new MySqlCommand {
+                    CommandText = "SELECT MAX(ID) FROM lich",
+                    Connection = databaseConnection.Connection
+                };
+                reader = command.ExecuteReader();
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        lastId = reader.GetString("MAX(ID)");
+                    }
                 }
-
-                foreach (VatTu_DTO idVatTu in vatTu_DTOs) {
-                    command = new MySqlCommand {
-                        Connection = databaseConnection.Connection,
-                        CommandText = "INSERT INTO lich_vattu(IDLich, IDVatTu, SoLuong) VALUE (@idl, @idvt, @sl)"
-                    };
-                    command.Parameters.AddWithValue("@idl", idLich);
-                    command.Parameters.AddWithValue("@idvt", idVatTu.Id);
-                    command.Parameters.AddWithValue("@sl", idVatTu.SoLuong);
-                    command.ExecuteNonQuery();
-                    command.Dispose();
-                }
+                reader.Close();
+                command.Dispose();
 
                 databaseConnection.CloseConnect();
             } catch (Exception ex) {
@@ -56,6 +43,53 @@ namespace TakeCareOfPlants_DAL
                 databaseConnection.CloseConnect();
                 throw ex;
             }
+            return lastId;
+        }
+
+        public List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>> GetDataLichThoiGianVatTu()
+        {
+            List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>> tuples =
+                new List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>>();
+            command = new MySqlCommand {
+                CommandText = "SELECT a.ID, a.NgayLapLich, c.ThoiGian, d.VatTu, e.DonVi, b.SoLuong, b.GhiChu " +
+                "FROM lich AS a " +
+                "INNER JOIN lich_thoigian_vattu AS b " +
+                "ON b.IDLich = a.ID " +
+                "INNER JOIN thoigian AS c " +
+                "ON b.IDThoiGian = c.ID " +
+                "INNER JOIN vattu AS d " +
+                "ON b.IDVatTu = d.ID " +
+                "INNER JOIN donvi AS e " +
+                "ON d.IDDonVi = e.ID " +
+                "ORDER BY a.ID, c.ThoiGian;",
+                Connection = databaseConnection.Connection
+            };
+            try {
+                databaseConnection.OpenConnect();
+
+                reader = command.ExecuteReader();
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        tuples.Add(
+                            new Tuple<Lich_DTO, TimeSpan, string, string, int, string>(
+                                new Lich_DTO(reader.GetString("ID"), reader.GetDateTime("NgayLapLich")),
+                                reader.GetTimeSpan("ThoiGian"),
+                                reader.GetString("VatTu"),
+                                reader.GetString("DonVi"),
+                                reader.GetInt32("SoLuong"),
+                                reader.GetString("GhiChu")));
+                    }
+                }
+                reader.Close();
+                command.Dispose();
+
+                databaseConnection.CloseConnect();
+            } catch (Exception ex) {
+                command.Dispose();
+                databaseConnection.CloseConnect();
+                throw ex;
+            }
+            return tuples;
         }
     }
 }
