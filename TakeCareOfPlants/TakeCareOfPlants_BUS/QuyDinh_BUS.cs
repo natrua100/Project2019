@@ -7,8 +7,8 @@ namespace TakeCareOfPlants_BUS
 {
     public static class QuyDinh_BUS
     {
-        private static QuyDinh_SQL quyDinhSQL = new QuyDinh_SQL();
-        private static ViTri_SQL viTriSQL = new ViTri_SQL();
+        private static readonly QuyDinh_SQL quyDinhSQL = new QuyDinh_SQL();
+        private static readonly ViTri_SQL viTriSQL = new ViTri_SQL();
 
         public static List<QuyDinh_DTO> GetValueQuyDinh() => quyDinhSQL.GetDataQuyDinh();
 

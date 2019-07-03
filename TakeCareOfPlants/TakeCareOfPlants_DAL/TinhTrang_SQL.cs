@@ -21,7 +21,9 @@ namespace TakeCareOfPlants_DAL
                 reader = command.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        tinhTrang_DTOs.Add(new TinhTrang_DTO(reader.GetString("TinhTrang")));
+                        tinhTrang_DTOs.Add(new TinhTrang_DTO(
+                            reader.GetString("ID"),
+                            reader.GetString("TinhTrang")));
                     }
                 }
                 reader.Close();

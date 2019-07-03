@@ -1,14 +1,16 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using TakeCareOfPlants_DTO;
 
 namespace TakeCareOfPlants_DAL
 {
     public class CayCanh_SQL
     {
-        private DatabaseConnection databaseConnection = new DatabaseConnection();
+        private readonly DatabaseConnection databaseConnection = new DatabaseConnection();
         private MySqlCommand command;
+        private MySqlDataAdapter dataAdapter;
         private MySqlDataReader reader;
 
         public string GetLastIDCayCanh()
@@ -39,16 +41,52 @@ namespace TakeCareOfPlants_DAL
             return lastId;
         }
 
+        public DataTable GetAllDataCayCanh()
+        {
+            DataSet data = new DataSet();
+            dataAdapter = new MySqlDataAdapter(
+                "SELECT "
+                + "ROW_NUMBER() OVER () AS 'STT', "
+                + "cc.TenCay AS 'Cây_Cảnh', "
+                + "lcc.Loai AS 'Loại', "
+                + "vt.TenViTri AS 'Vị_Trí', "
+                + "tt.TinhTrang AS 'Tình_Trạng'"
+                + "FROM caycanh AS cc "
+                + "INNER JOIN caycanh_vitri AS cc_vt "
+                + "ON cc.ID = cc_vt.IDCayCanh "
+                + "INNER JOIN vitri AS vt "
+                + "ON vt.ID = cc_vt.IDViTri "
+                + "INNER JOIN loaicaycanh AS lcc "
+                + "ON lcc.ID = cc.IDLoai "
+                + "INNER JOIN tinhtrang AS tt "
+                + "ON tt.ID = cc.IDTinhTrang;",
+                databaseConnection.Connection);
+
+            try {
+                databaseConnection.OpenConnect();
+
+                dataAdapter.Fill(data);
+                dataAdapter.Dispose();
+
+                databaseConnection.CloseConnect();
+            } catch (Exception ex) {
+                command.Dispose();
+                databaseConnection.CloseConnect();
+                throw ex;
+            }
+            return data.Tables[0];
+        }
+
         public List<Tuple<CayCanh_DTO, ViTri_DTO>> GetDataCayCanhViTri()
         {
             List<Tuple<CayCanh_DTO, ViTri_DTO>> tuples = new List<Tuple<CayCanh_DTO, ViTri_DTO>>();
             command = new MySqlCommand {
-                CommandText = "SELECT a.ID, a.TenCay, c.ID AS 'IDViTri', c.TenViTri " +
-                "FROM caycanh AS a " +
-                "INNER JOIN caycanh_vitri AS b " +
-                "ON a.ID = b.IDCayCanh " +
-                "INNER JOIN vitri AS c " +
-                "ON b.IDViTri = c.ID;",
+                CommandText = "SELECT a.ID, a.TenCay, c.ID AS 'IDViTri', c.TenViTri "
+                              + "FROM caycanh AS a "
+                              + "INNER JOIN caycanh_vitri AS b "
+                              + "ON a.ID = b.IDCayCanh "
+                              + "INNER JOIN vitri AS c "
+                              + "ON b.IDViTri = c.ID;",
                 Connection = databaseConnection.Connection
             };
             try {
@@ -91,8 +129,7 @@ namespace TakeCareOfPlants_DAL
                 command.ExecuteNonQuery();
                 command.Dispose();
 
-                command.CommandText = "INSERT INTO caycanh_vitri(IDCayCanh, IDViTri) VALUE (@lastId, @idvt)";
-                command.Parameters.AddWithValue("@lastId", GetLastIDCayCanh());
+                command.CommandText = "INSERT INTO caycanh_vitri(IDCayCanh, IDViTri) VALUE ((SELECT MAX(ID) from caycanh), @idvt)";
                 command.Parameters.AddWithValue("@idvt", idViTri);
                 command.ExecuteNonQuery();
                 command.Dispose();

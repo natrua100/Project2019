@@ -10,7 +10,7 @@
             => (Id, TenViTri, SoCayToiDa) = (id, tenViTri, soCayToiDa);
 
         public ViTri_DTO(string id, string tenViTri, int soCayToiDa, int soCayCoSan) 
-            => (Id, TenViTri, SoCayCoSan) = (id, tenViTri, soCayCoSan);
+            => (Id, TenViTri, SoCayToiDa, SoCayCoSan) = (id, tenViTri, soCayToiDa, soCayCoSan);
 
         public string TenViTri { get; set; }
         public string Id { get; set; }

@@ -1,15 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using TakeCareOfPlants_DTO;
 
 namespace TakeCareOfPlants_DAL
 {
     public class Lich_SQL
     {
-        private DatabaseConnection databaseConnection = new DatabaseConnection();
+        private readonly DatabaseConnection databaseConnection = new DatabaseConnection();
         private MySqlCommand command;
         private MySqlDataReader reader;
+        private MySqlDataAdapter dataAdapter;
 
         public string InsertAndGetLastIdDataLich()
         {
@@ -46,22 +48,60 @@ namespace TakeCareOfPlants_DAL
             return lastId;
         }
 
+        public DataTable GetAllDataLich(string idCayCanh, string idLich)
+        {
+            DataSet data = new DataSet();
+            dataAdapter = new MySqlDataAdapter(
+                "SELECT "
+                + "ROW_NUMBER() OVER () AS 'STT', "
+                + "tg.ThoiGian AS 'Thời_Gian', "
+                + "vt.VatTu AS 'Vật_Tư', "
+                + "dv.DonVi AS 'Đơn_Vị_Tính', "
+                + "l_tg_vt.SoLuong AS 'Số_Lượng', "
+                + "l_tg_vt.GhiChu AS 'Ghi_Chú' "
+                + "FROM thoigian AS tg "
+                + "INNER JOIN lich_thoigian_caycanh AS l_tg_cc "
+                + "ON l_tg_cc.IDThoiGian = tg.ID "
+                + "INNER JOIN lich_thoigian_vattu AS l_tg_vt "
+                + "ON l_tg_vt.IDThoiGian = tg.ID "
+                + "INNER JOIN vattu AS vt "
+                + "ON l_tg_vt.IDVatTu = vt.ID "
+                + "INNER JOIN donvi AS dv "
+                + "ON vt.IDDonVi = dv.ID "
+                + "WHERE l_tg_cc.IDLich = 1 && l_tg_vt.IDLich = 1 && l_tg_cc.IDCayCanh = 1;",
+                databaseConnection.Connection);
+
+            try {
+                databaseConnection.OpenConnect();
+
+                dataAdapter.Fill(data);
+                dataAdapter.Dispose();
+
+                databaseConnection.CloseConnect();
+            } catch (Exception ex) {
+                command.Dispose();
+                databaseConnection.CloseConnect();
+                throw ex;
+            }
+            return data.Tables[0];
+        }
+
         public List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>> GetDataLichThoiGianVatTu()
         {
             List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>> tuples =
                 new List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>>();
             command = new MySqlCommand {
-                CommandText = "SELECT a.ID, a.NgayLapLich, c.ThoiGian, d.VatTu, e.DonVi, b.SoLuong, b.GhiChu " +
-                "FROM lich AS a " +
-                "INNER JOIN lich_thoigian_vattu AS b " +
-                "ON b.IDLich = a.ID " +
-                "INNER JOIN thoigian AS c " +
-                "ON b.IDThoiGian = c.ID " +
-                "INNER JOIN vattu AS d " +
-                "ON b.IDVatTu = d.ID " +
-                "INNER JOIN donvi AS e " +
-                "ON d.IDDonVi = e.ID " +
-                "ORDER BY a.ID, c.ThoiGian;",
+                CommandText = "SELECT a.ID, a.NgayLapLich, c.ThoiGian, d.VatTu, e.DonVi, b.SoLuong, b.GhiChu "
+                              + "FROM lich AS a "
+                              + "INNER JOIN lich_thoigian_vattu AS b "
+                              + "ON b.IDLich = a.ID "
+                              + "INNER JOIN thoigian AS c "
+                              + "ON b.IDThoiGian = c.ID "
+                              + "INNER JOIN vattu AS d "
+                              + "ON b.IDVatTu = d.ID "
+                              + "INNER JOIN donvi AS e "
+                              + "ON d.IDDonVi = e.ID "
+                              + "ORDER BY a.ID, c.ThoiGian;",
                 Connection = databaseConnection.Connection
             };
             try {

@@ -13,8 +13,11 @@ namespace TakeCareOfPlants_BUS
 
         public string InsertAndGetLastIdValueLich() => lich_SQL.InsertAndGetLastIdDataLich();
 
-        public void InsertValueThoiGian(string idLich, TimeSpan thoiGian, 
-            List<string> listCayCanh, List<Tuple<string, string, int>> tuples, string ghiChu)
+        public void InsertValueThoiGian(string idLich,
+                                        TimeSpan thoiGian,
+                                        List<string> listCayCanh,
+                                        List<Tuple<string, string, int>> tuples,
+                                        string ghiChu)
         {
             thoiGianSQL.InsertDataThoiGian(
                 idLich,
@@ -25,7 +28,6 @@ namespace TakeCareOfPlants_BUS
             );
         }
 
-        public List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>> GetValueLich() 
-            => lich_SQL.GetDataLichThoiGianVatTu();
+        public List<Tuple<Lich_DTO, TimeSpan, string, string, int, string>> GetValueLich() => lich_SQL.GetDataLichThoiGianVatTu();
     }
 }

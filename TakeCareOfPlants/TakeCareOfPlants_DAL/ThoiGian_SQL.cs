@@ -10,8 +10,11 @@ namespace TakeCareOfPlants_DAL
         private DatabaseConnection databaseConnection = new DatabaseConnection();
         private MySqlCommand command;
 
-        public void InsertDataThoiGian(string idLich, TimeSpan thoiGian, 
-            List<string> cayCanhs, List<Tuple<string, string, int>> vatTus, string ghiChu)
+        public void InsertDataThoiGian(string idLich,
+                                       TimeSpan thoiGian,
+                                       List<string> cayCanhs,
+                                       List<Tuple<string, string, int>> vatTus,
+                                       string ghiChu)
         {
             try {
                 databaseConnection.OpenConnect();
@@ -19,8 +22,9 @@ namespace TakeCareOfPlants_DAL
                 foreach (string IdCayCanh in cayCanhs) {
                     command = new MySqlCommand {
                         Connection = databaseConnection.Connection,
-                        CommandText = "INSERT INTO caycanh_thoigian(IDCayCanh, IDThoiGian) VALUE (@idcc, @idtg)"
+                        CommandText = "INSERT INTO lich_thoigian_caycanh(IDLich, IDCayCanh, IDThoiGian) VALUE (@idl, @idcc, @idtg)"
                     };
+                    command.Parameters.AddWithValue("@idl", idLich);
                     command.Parameters.AddWithValue("@idcc", IdCayCanh);
                     command.Parameters.AddWithValue("@idtg", thoiGian);
                     command.ExecuteNonQuery();
@@ -30,8 +34,8 @@ namespace TakeCareOfPlants_DAL
                 foreach (Tuple<string, string, int> VatTu in vatTus) {
                     command = new MySqlCommand {
                         Connection = databaseConnection.Connection,
-                        CommandText = "INSERT INTO lich_thoigian_vattu(IDLich, IDThoiGian, IDVatTu, SoLuong, GhiChu) " +
-                        "VALUE (@idl, @idtg, @idvt, @sl, @gc)"
+                        CommandText = "INSERT INTO lich_thoigian_vattu(IDLich, IDThoiGian, IDVatTu, SoLuong, GhiChu) "
+                                      + "VALUE (@idl, @idtg, @idvt, @sl, @gc)"
                     };
                     command.Parameters.AddWithValue("@idl", idLich);
                     command.Parameters.AddWithValue("@idtg", thoiGian);

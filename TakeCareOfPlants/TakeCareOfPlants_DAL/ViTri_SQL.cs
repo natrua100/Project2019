@@ -1,14 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using TakeCareOfPlants_DTO;
 
 namespace TakeCareOfPlants_DAL
 {
     public class ViTri_SQL
     {
-        private DatabaseConnection databaseConnection = new DatabaseConnection();
+        private readonly DatabaseConnection databaseConnection = new DatabaseConnection();
         private MySqlCommand command;
         private MySqlDataReader reader;
 
@@ -25,8 +24,8 @@ namespace TakeCareOfPlants_DAL
                 if (reader.HasRows) {
                     while (reader.Read()) {
                         viTri_DTOs.Add(new ViTri_DTO(
-                            reader.GetString("ID"), 
-                            reader.GetString("TenViTri"), 
+                            reader.GetString("ID"),
+                            reader.GetString("TenViTri"),
                             reader.GetInt32("SoCayToiDa")));
                     }
                 }

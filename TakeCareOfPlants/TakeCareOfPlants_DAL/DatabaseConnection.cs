@@ -7,21 +7,19 @@ namespace TakeCareOfPlants_DAL
 {
     internal class DatabaseConnection
     {
-        private MySqlConnection connection;
-
         public DatabaseConnection()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DBQLCC"].ConnectionString;
-            connection = new MySqlConnection(connectionString);
+            Connection = new MySqlConnection(connectionString);
         }
 
-        public MySqlConnection Connection { get => connection; set => connection = value; }
+        public MySqlConnection Connection { get; set; }
 
         public bool OpenConnect()
         {
             try {
-                if (connection.State.ToString().Equals("Closed")) {
-                    connection.Open();
+                if (Connection.State.ToString().Equals("Closed")) {
+                    Connection.Open();
                 }
             } catch (Exception ex) {
                 MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -33,8 +31,8 @@ namespace TakeCareOfPlants_DAL
         public bool CloseConnect()
         {
             try {
-                if (connection.State.ToString().Equals("Open")) {
-                    connection.Close();
+                if (Connection.State.ToString().Equals("Open")) {
+                    Connection.Close();
                 }
             } catch (Exception ex) {
                 MessageBox.Show("Loi: " + ex.Message, "Thong bao loi", MessageBoxButtons.OK, MessageBoxIcon.Error);

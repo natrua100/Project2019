@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -190,5 +191,32 @@ namespace TakeCareOfPlants
             return cell1.Value.ToString() == cell2.Value.ToString();
         }
 
+        public static void KeyEnterIsButton(Button button, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter) {
+                button.PerformClick();
+            }
+        }
+
+        public static async void SetImageNotifiAsync(bool isSuccess, string name)
+        {
+            PageMain_GUI.Instance.ImageNotification.Image = null;
+            PageMain_GUI.Instance.TextNotification.Text = "";
+
+            if (isSuccess) {
+                PageMain_GUI.Instance.ImageNotification.Image = Properties.Resources._checked;
+                PageMain_GUI.Instance.TextNotification.Text = name + "Success";
+            } else {
+                PageMain_GUI.Instance.ImageNotification.Image = Properties.Resources._checked;
+                PageMain_GUI.Instance.TextNotification.Text = name + "Error";
+            }
+
+            PageMain_GUI.Instance.ImageNotification.SizeMode = PictureBoxSizeMode.Zoom;
+
+            await Task.Delay(3000);
+
+            PageMain_GUI.Instance.ImageNotification.Image = PageMain_GUI.Instance.ImageNotification.InitialImage;
+            PageMain_GUI.Instance.TextNotification.Text = "Ready";
+        }
     }
 }
