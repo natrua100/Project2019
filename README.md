@@ -2,7 +2,7 @@
 
 *CSCC* : CHĂM SÓC CÂY CẢNH.
 
- by: Lê Phùng Khánh Minh, Phạm Quốc Khánh, Nguyễn Viết Hải.
+ by: Phạm Quốc Khánh, Lê Phùng Khánh Minh, Nguyễn Viết Hải.
 
  **Ngôn ngữ: C#, MySQL**
 
